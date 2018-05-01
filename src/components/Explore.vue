@@ -1,15 +1,41 @@
 <template>
   <div class="explore">
     <h1>{{ msg }}</h1>
+    <b-card-group deck>
+      <b-card v-for="cat in categories" :key="cat.Id" :header="cat.Description">
+      </b-card>
+    </b-card-group>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'explore',
   data () {
     return {
-      msg: 'Explore'
+      categories: []
+    }
+  },
+  created () {
+    this.getData()
+    console.log('created')
+  },
+  methods: {
+    getData () {
+      this.isLoading = true
+      axios.get(process.env.API_BASE_URL + '/categories')
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.categories = response.data
+          this.isLoading = false
+        })
+        .catch(e => {
+          debugger
+          this.errors.push(e)
+          this.isLoading = false
+        })
     }
   }
 }
@@ -17,21 +43,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #35495E;
-}
 </style>
