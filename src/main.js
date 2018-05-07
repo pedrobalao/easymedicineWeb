@@ -7,12 +7,14 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import TitleValue from './components/TitleValue'
+import Variable from './components/Variable'
 import Spinner from './components/Spinner'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 Vue.component('app-titlevalue', TitleValue)
+Vue.component('variable', Variable)
 Vue.component('spinner', Spinner)
 
 /* eslint-disable no-new */

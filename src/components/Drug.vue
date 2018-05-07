@@ -2,6 +2,7 @@
     <div class="drug">
         <spinner :loading="isLoading" />
         <h1>{{ drug.Name }}</h1>
+        <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
         <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
@@ -33,6 +34,7 @@ export default {
       drugid: this.$route.params.id,
       drug: null,
       drugindications: [],
+      variables: [],
       fields: {
         IdVia: {
           label: 'Via',
@@ -73,28 +75,50 @@ export default {
       debugger
       axios.all([
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications')
+        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
+        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/variables')
       ])
         .then(
           axios.spread(
-            function (drugbasics, drugindications) {
+            function (drugbasics, drugindications, drugvariables) {
               debugger
               that.drug = drugbasics.data[0]
               that.drugindications = drugindications.data
+              that.variables = drugvariables.data
+
+              that.variables.forEach(element => {
+                element.value = ''
+              })
             }
           ))
-      /* axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.drug = response.data[0]
-          debugger
-          this.isLoading = false
-        })
-        .catch(e => {
-          debugger
-          this.errors.push(e)
-          this.isLoading = false
-        }) */
+    },
+    valueChanged (id, value) {
+      this.variables.find(p => p.Id === id).value = value
+      let fillComplete = true
+      let vars = {}
+      debugger
+      this.variables.forEach(element => {
+        vars[element.Id] = element.value
+
+        if (element.value === '') {
+          fillComplete = false
+        }
+        // alert(element.Id + ' ' + element.value)
+      })
+      if (fillComplete) {
+        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/calculation?data=' + JSON.stringify(vars))
+          .then(response => {
+            debugger
+            // JSON responses are automatically parsed.
+            alert(response.data[0].result)
+          })
+          .catch(e => {
+            debugger
+            alert('Erro ao calcular dose')
+            this.errors.push(e)
+            this.isLoading = false
+          })
+      }
     }
   }
 }
