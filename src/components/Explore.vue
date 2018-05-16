@@ -1,6 +1,7 @@
 <template>
   <div class="explore">
     <h1>{{ msg }}</h1>
+    
     <b-card-group deck>
       <b-card v-for="cat in categories" :key="cat.Id" :header="cat.Description">
       </b-card>

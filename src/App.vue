@@ -6,7 +6,7 @@
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item to="/">Inicio</b-nav-item>
-          <b-nav-item to="/explore">Explorar</b-nav-item>
+          <b-nav-item to="/categories">Explorar</b-nav-item>
           <b-nav-item to="/dosecals">Doses</b-nav-item>
           <b-nav-item to="/medicalcals">Cálculos</b-nav-item>
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>

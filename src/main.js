@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import TitleValue from './components/TitleValue'
 import Variable from './components/Variable'
 import Spinner from './components/Spinner'
+import Result from './components/Result'
+import DrugList from './components/DrugList'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
@@ -16,6 +18,8 @@ Vue.config.productionTip = false
 Vue.component('app-titlevalue', TitleValue)
 Vue.component('variable', Variable)
 Vue.component('spinner', Spinner)
+Vue.component('app-result', Result)
+Vue.component('druglist', DrugList)
 
 /* eslint-disable no-new */
 new Vue({

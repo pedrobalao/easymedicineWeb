@@ -2,7 +2,17 @@
     <div class="drug">
         <spinner :loading="isLoading" />
         <h1>{{ drug.Name }}</h1>
-        <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+        <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
+        <h3>Cálculo de Doses</h3>
+        <b-form @submit="onCalc" @reset="onReset" >
+          <b-form-group id="exampleGroup4">
+            <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+          </b-form-group>
+          <b-button type="submit" variant="primary">Calcular</b-button>
+        </b-form>
+        <h4 v-if="hasResults" >Resultados</h4>
+        <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
+        
         <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
@@ -35,6 +45,21 @@ export default {
       drug: null,
       drugindications: [],
       variables: [],
+      results: [],
+      fieldsres: {
+        resultdescription: {
+          label: 'Descrição',
+          sortable: false
+        },
+        result: {
+          label: 'Resultado',
+          sortable: false
+        }// ,
+        // resultunit: {
+        //   label: 'Unidade',
+        //   sortable: false
+        // }
+      },
       fields: {
         IdVia: {
           label: 'Via',
@@ -48,7 +73,6 @@ export default {
           label: 'Dose Adulto',
           sortable: false
         },
-
         TakesPerDay: {
           label: 'Tomas',
           sortable: false
@@ -64,11 +88,24 @@ export default {
       }
     }
   },
+  computed: {
+    // a computed getter
+    hasResults: function () {
+      // `this` points to the vm instance
+      return this.results.length > 0
+    }
+  },
   created () {
     this.getDrug()
     console.log('created')
   },
   methods: {
+    onReset () {
+      var that = this
+      that.variables.forEach(element => {
+        element.value = ''
+      })
+    },
     getDrug () {
       this.isLoading = true
       var that = this
@@ -93,31 +130,41 @@ export default {
           ))
     },
     valueChanged (id, value) {
-      this.variables.find(p => p.Id === id).value = value
+      var that = this
+      that.variables.find(item => item.Id === id).value = value
+    },
+    onCalc () {
+      var that = this
       let fillComplete = true
       let vars = {}
       debugger
-      this.variables.forEach(element => {
+      that.variables.forEach(element => {
         vars[element.Id] = element.value
-
         if (element.value === '') {
           fillComplete = false
         }
-        // alert(element.Id + ' ' + element.value)
       })
       if (fillComplete) {
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/calculation?data=' + JSON.stringify(vars))
           .then(response => {
             debugger
-            // JSON responses are automatically parsed.
-            alert(response.data[0].result)
+            that.results = []
+            response.data.forEach(item => {
+              that.results.push({
+                resultdescription: item.resultdescription,
+                result: item.result + ' ' + item.resultunit
+              })
+            })
+            // that.results = response.data
           })
           .catch(e => {
             debugger
             alert('Erro ao calcular dose')
-            this.errors.push(e)
-            this.isLoading = false
+            that.errors.push(e)
+            that.isLoading = false
           })
+      } else {
+        alert('Preencha todas variáveis para efetuar o cálculo!')
       }
     }
   }
