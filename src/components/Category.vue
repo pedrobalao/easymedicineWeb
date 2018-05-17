@@ -1,9 +1,9 @@
 <template>
   <div class="explore">
     <div class="loading" v-if="loading">
-      Loading...
+      <pulse-loader :loading="loading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
     </div>
-    <h1>{{ msg }}</h1>
+    <b-breadcrumb :items="links"/>
     <b-list-group>
         <b-list-group-item v-for="cat in categories" :key="cat.Id"  v-on:click="clicked(cat)" action>{{cat.Description}}</b-list-group-item>
     </b-list-group>
@@ -17,8 +17,14 @@ export default {
   name: 'Categories',
   data () {
     return {
+      loadingcolor: '#3AB982',
+      loadingsize: '45px',
       loading: false,
-      categories: []
+      categories: [],
+      links: [{
+        text: 'Explorar',
+        to: { name: 'Categories' }
+      }]
     }
   },
   created () {
@@ -35,12 +41,23 @@ export default {
       this.loading = true
       var catid = this.$route.params.catid
       let url = '/categories'
+      this.links = [{
+        text: 'Explorar',
+        to: { name: 'Categories' }
+      }]
       if (catid) {
         url = url + '/' + catid + '/subcategories'
+        axios.get(process.env.API_BASE_URL + '/categories/' + catid)
+          .then(response => {
+            let category = response.data[0]
+            this.links.push({
+              text: category.Description,
+              to: { name: 'SpecificCategory', params: { catid: category.Id } }
+            })
+          })
       }
       axios.get(process.env.API_BASE_URL + url)
         .then(response => {
-          // JSON responses are automatically parsed.
           this.categories = response.data
           this.loading = false
         })

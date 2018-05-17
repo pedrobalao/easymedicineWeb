@@ -3,16 +3,17 @@
         <spinner :loading="isLoading" />
         <h1>{{ drug.Name }}</h1>
         <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
-        <h3>Cálculo de Doses</h3>
-        <b-form @submit="onCalc" @reset="onReset" >
-          <b-form-group id="exampleGroup4">
-            <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
-          </b-form-group>
-          <b-button type="submit" variant="primary">Calcular</b-button>
-        </b-form>
-        <h4 v-if="hasResults" >Resultados</h4>
-        <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
-        
+        <div class="dosecalc" v-if="variables.length > 0">
+          <h3>Cálculo de Doses</h3>
+          <b-form @submit="onCalc" @reset="onReset" >
+            <b-form-group id="exampleGroup4">
+              <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+            </b-form-group>
+            <b-button type="submit" variant="primary">Calcular</b-button>
+          </b-form>
+          <h4 v-if="hasResults" >Resultados</h4>
+          <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
+        </div>
         <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />

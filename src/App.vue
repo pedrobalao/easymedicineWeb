@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" type="dark" variant="dark">
+    <b-navbar toggleable="md" type="dark" variant="primary">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand to="/">{{brand}}</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item to="/">Inicio</b-nav-item>
           <b-nav-item to="/categories">Explorar</b-nav-item>
-          <b-nav-item to="/dosecals">Doses</b-nav-item>
+          <b-nav-item to="/doses">Doses</b-nav-item>
           <b-nav-item to="/medicalcals">Cálculos</b-nav-item>
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
           <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>-->
