@@ -11,6 +11,7 @@ import Variable from './components/Variable'
 import Spinner from './components/Spinner'
 import Result from './components/Result'
 import DrugList from './components/DrugList'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Vue.component('variable', Variable)
 Vue.component('spinner', Spinner)
 Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
+Vue.component('pulse-loader', PulseLoader)
 
 /* eslint-disable no-new */
 new Vue({

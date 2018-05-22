@@ -9,12 +9,6 @@
 
 export default {
   name: 'titlevalue',
-  props: ['title', 'value'],
-  data () {
-    return {
-      title: this.title,
-      value: this.value
-    }
-  }
+  props: ['title', 'value']
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="explore">
     <div class="loading" v-if="loading">
-      <pulse-loader :loading="loading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
+      <spinner :loading="loading" />
     </div>
     <b-breadcrumb :items="links"/>
     <b-list-group>
@@ -17,8 +17,6 @@ export default {
   name: 'Categories',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       loading: false,
       categories: [],
       links: [{

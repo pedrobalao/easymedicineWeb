@@ -2,7 +2,7 @@
     <div class="search">
         <h1>{{ searchstr }}</h1>
         <template>
-          <pulse-loader :loading="isLoading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
+          <spinner :loading="isLoading" />
           <b-table striped :items="drugs" :fields="fields" :hover="hover" @row-clicked="rowClicked"></b-table>
         </template>
     </div>
@@ -15,8 +15,6 @@ export default {
   name: 'search',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       isLoading: false,
       selected: null,
       hover: true,

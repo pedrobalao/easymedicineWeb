@@ -1,31 +1,34 @@
 <template>
-    <div class="drug">
+    <div>
         <spinner :loading="isLoading" />
-        <h1>{{ drug.Name }}</h1>
-        <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
-        <div class="dosecalc" v-if="variables.length > 0">
-          <h3>Cálculo de Doses</h3>
-          <b-form @submit="onCalc" @reset="onReset" >
-            <b-form-group id="exampleGroup4">
-              <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
-            </b-form-group>
-            <b-button type="submit" variant="primary">Calcular</b-button>
-          </b-form>
-          <h4 v-if="hasResults" >Resultados</h4>
-          <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
-        </div>
-        <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
-        <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
-        <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
-        <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
-        <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
-        <h3>Indicações</h3>
-        <b-card-group deck>
-          <b-card v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
-            <b-table stacked :items="indication.Doses" :fields="fields"></b-table>
-          </b-card>
-        </b-card-group>
+        <div class="drug" v-if="drug != null">
+          <h1>{{ drug.Name }}</h1>
+          <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
+          <div class="dosecalc" v-if="variables.length > 0">
+            <h3>Cálculo de Doses</h3>
+            <b-form @submit="onCalc" @reset="onReset" >
+              <b-form-group id="exampleGroup4">
+                <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+              </b-form-group>
+              <b-button type="submit" variant="primary">Calcular</b-button>
+            </b-form>
+            <h4 v-if="hasResults" >Resultados</h4>
+            <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
+          </div>
+          <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
+          <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
+          <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
+          <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
+          <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
+          <h3>Indicações</h3>
+          <b-card-group deck>
+            <b-card v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
+              <b-table stacked :items="indication.Doses" :fields="fields"></b-table>
+            </b-card>
+          </b-card-group>
+      </div>
     </div>
+   
 </template>
 
 <script>
@@ -109,8 +112,8 @@ export default {
     },
     getDrug () {
       this.isLoading = true
-      var that = this
-      debugger
+      // var that = this
+      // debugger
       axios.all([
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
@@ -118,13 +121,14 @@ export default {
       ])
         .then(
           axios.spread(
-            function (drugbasics, drugindications, drugvariables) {
-              debugger
-              that.drug = drugbasics.data[0]
-              that.drugindications = drugindications.data
-              that.variables = drugvariables.data
+            (drugbasics, drugindications, drugvariables) => {
+              // debugger
+              this.drug = drugbasics.data[0]
+              this.drugindications = drugindications.data
+              this.variables = drugvariables.data
+              this.isLoading = false
 
-              that.variables.forEach(element => {
+              this.variables.forEach(element => {
                 element.value = ''
               })
             }

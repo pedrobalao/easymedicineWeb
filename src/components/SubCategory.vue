@@ -1,7 +1,7 @@
 <template>
   <div class="explore">
     <div class="loading" v-if="loading">
-      <pulse-loader loading="true" color="#3AB982" size="45px"></pulse-loader>
+        <spinner :loading="loading" />
     </div>
     <b-breadcrumb :items="links"/>
     <druglist :drugs="drugs"></druglist>
@@ -15,8 +15,6 @@ export default {
   name: 'SubCategory',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       loading: false,
       msg: '',
       drugs: [],
