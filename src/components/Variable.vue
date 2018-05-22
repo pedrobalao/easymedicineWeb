@@ -1,7 +1,7 @@
 <template>
     <div class="variable">
       <b-input-group size="sm" :prepend="description" :append="unit">
-        <b-form-input v-model="value" v-on:change="$emit('valuechanged', id, $event.target.value)" />
+        <b-form-input v-model="value" v-on:change="$emit('valuechanged', id, value)" />
       </b-input-group>
     </div>
 </template>

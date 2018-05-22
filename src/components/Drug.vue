@@ -13,7 +13,7 @@
               <b-button type="submit" variant="primary">Calcular</b-button>
             </b-form>
             <h4 v-if="hasResults" >Resultados</h4>
-            <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
+            <b-table striped :items="results"  :hover="true" :fields="fieldsres" v-if="hasResults" />
           </div>
           <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
           <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
