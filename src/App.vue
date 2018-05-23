@@ -2,6 +2,7 @@
   <div id="app">
     <b-navbar toggleable="md" type="dark" variant="primary" sticky="true">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+      <b-badge variant="danger">beta</b-badge>
       <b-navbar-brand to="/">{{brand}}</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>

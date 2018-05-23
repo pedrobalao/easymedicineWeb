@@ -1,7 +1,14 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
+$primarycolor: #0078D7;
+$secondarycolor: white;
+
 $theme-colors: (
-  "primary": #0078D7,
+  "primary": $primarycolor,
 );
 
 $font-family-base: 'Avenir-Book';
+
+.title {
+  color: $primarycolor
+}

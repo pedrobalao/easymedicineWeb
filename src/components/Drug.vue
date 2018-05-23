@@ -1,10 +1,10 @@
 <template>
     <div class="drug">
         <spinner :loading="isLoading" />
-        <h1>{{ drug.Name }}</h1>
+        <h1 class="title">{{ drug.Name }}</h1>
         <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
         <div class="dosecalc" v-if="variables.length > 0">
-          <h3>Cálculo de Doses</h3>
+          <p class="text-primary">Cálculo de Doses</p>
           <b-form @submit="onCalc" @reset="onReset" >
             <b-form-group id="exampleGroup4">
               <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
@@ -19,10 +19,14 @@
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
         <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
         <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
-        <h3>Indicações</h3>
-        <b-card-group deck>
-          <b-card v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
-            <b-table stacked :items="indication.Doses" :fields="fields"></b-table>
+        <p class="text-primary">Indicações</p>
+        <b-card-group columns >
+          <b-card border-variant="primary"
+            header="Primary"
+            header-bg-variant="primary"
+            header-text-variant="white"
+            align="center" v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
+            <b-table class="table-primary" stacked small="true" :items="indication.Doses" :fields="fields"></b-table>
           </b-card>
         </b-card-group>
     </div>
