@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" type="dark" variant="primary" sticky="true">
+    <b-navbar toggleable="md" type="dark" variant="primary" :sticky="true">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-badge variant="danger">beta</b-badge>
       <b-navbar-brand to="/">{{brand}}</b-navbar-brand>
@@ -51,7 +51,7 @@ export default {
 <style lang="scss">
   @import './assets/custom.scss';
   @import '../node_modules/bootstrap/scss/bootstrap.scss';
-  
+
   .basic {
     padding: 10px;
   }
