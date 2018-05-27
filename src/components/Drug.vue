@@ -6,13 +6,13 @@
         <div class="dosecalc" v-if="variables.length > 0">
           <p class="text-primary">Cálculo de Doses</p>
           <b-form @submit="onCalc" @reset="onReset" >
-            <b-form-group id="exampleGroup4">
+            <b-form-group id="drugVariables">
               <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
             </b-form-group>
             <b-button type="submit" variant="primary">Calcular</b-button>
           </b-form>
           <h4 v-if="hasResults" >Resultados</h4>
-          <b-table striped :items="results"  :hover="hover" :fields="fieldsres" v-if="hasResults" />
+          <b-table striped :items="results" :hover="hover" :fields="fieldsres" v-if="hasResults" />
         </div>
         <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
         <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
@@ -22,7 +22,6 @@
         <p class="text-primary">Indicações</p>
         <b-card-group columns >
           <b-card border-variant="primary"
-            header="Primary"
             header-bg-variant="primary"
             header-text-variant="white"
             align="center" v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">

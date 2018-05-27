@@ -25,7 +25,8 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: config.dev.env.NODE_ENV,
-        API_BASE_URL: '"http://127.0.0.1:3000/api/v1"'
+        // API_BASE_URL: '"https://easypedapi.azurewebsites.net/api/v1"'
+        API_BASE_URL: '"http://localhost:3000/api/v1"'
       }
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage

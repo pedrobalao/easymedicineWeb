@@ -42,7 +42,8 @@ export default {
         })
     },
     clicked (item) {
-      // debugger
+      debugger
+      this.$router.push({ name: 'SpecificMedicalCalculation', params: { id: item.Id } })
     }
   }
 }

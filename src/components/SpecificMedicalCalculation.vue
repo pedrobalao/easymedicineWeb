@@ -12,7 +12,6 @@
             <b-button type="submit" variant="primary">Calcular</b-button>
           </b-form>
         </div>
-        <app-titlevalue v-if="drug.Obs" title="Observações" :value="medicalcalculation.Observation" />
     </div>
 </template>
 
@@ -20,10 +19,11 @@
 import axios from 'axios'
 
 export default {
-  name: 'drug',
+  name: 'SpecificMedicalCalculation',
   data () {
-    console.log('data')
+    debugger
     return {
+      medcalcid: this.$route.params.id,
       medicalcalculation: {},
       variables: [],
       results: [],
@@ -47,17 +47,15 @@ export default {
       var that = this
       debugger
       axios.all([
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/variables')
+        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
+        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
       ])
         .then(
           axios.spread(
-            function (drugbasics, drugindications, drugvariables) {
+            function (mcbasics, mcvariables) {
               debugger
-              that.drug = drugbasics.data[0]
-              that.drugindications = drugindications.data
-              that.variables = drugvariables.data
+              that.medicalcalculation = mcbasics.data[0]
+              that.variables = mcvariables.data
 
               that.variables.forEach(element => {
                 element.value = ''
