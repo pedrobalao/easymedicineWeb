@@ -5,11 +5,11 @@
         <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
         <div class="dosecalc" v-if="variables.length > 0">
           <p class="text-primary">Cálculo de Doses</p>
-          <b-form @submit="onCalc" @reset="onReset" >
+          <b-form >
             <b-form-group id="drugVariables">
               <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
             </b-form-group>
-            <b-button type="submit" variant="primary">Calcular</b-button>
+            <b-button @click="onCalc" variant="primary">Calcular</b-button>
           </b-form>
           <h4 v-if="hasResults" >Resultados</h4>
           <b-table striped :items="results" :hover="hover" :fields="fieldsres" v-if="hasResults" />
