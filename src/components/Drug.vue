@@ -1,6 +1,5 @@
 <template>
     <div class="drug">
-        <spinner :loading="isLoading" />
         <h1 class="title">{{ drug.Name }}</h1>
         <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
         <div class="dosecalc" v-if="variables.length > 0">
@@ -128,7 +127,11 @@ export default {
               that.variables = drugvariables.data
 
               that.variables.forEach(element => {
-                element.value = ''
+                if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
+                  element.value = element.Values[0]
+                } else {
+                  element.value = ''
+                }
               })
             }
           ))

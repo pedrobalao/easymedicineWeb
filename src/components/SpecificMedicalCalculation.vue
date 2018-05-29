@@ -12,8 +12,8 @@
             <b-button @click="onCalc" variant="primary">Calcular</b-button>
           </b-form>
         </div>
-        <div >
-          <b-jumbotron bg-variant="primary" text-variant="white" border-variant="dark">
+        <div class="result">
+          <b-jumbotron bg-variant="primary" text-variant="white" border-variant="primary">
             <template slot="header">
               {{resultvalue +' '+resultunit}}
             </template>
@@ -68,7 +68,12 @@ export default {
               that.variables = mcvariables.data
 
               that.variables.forEach(element => {
-                element.value = ''
+                debugger
+                if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
+                  element.value = element.Values[0]
+                } else {
+                  element.value = ''
+                }
               })
             }
           ))
@@ -107,3 +112,8 @@ export default {
   }
 }
 </script>
+<style>
+.result {
+  padding: 10px
+}
+</style>
