@@ -12,7 +12,7 @@
             <b-button @click="onCalc" variant="primary">Calcular</b-button>
           </b-form>
         </div>
-        <div class="result">
+        <div class="result" >
           <b-jumbotron bg-variant="primary" text-variant="white" border-variant="primary">
             <template slot="header">
               {{resultvalue +' '+resultunit}}
