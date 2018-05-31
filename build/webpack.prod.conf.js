@@ -36,7 +36,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: env.NODE_ENV,
-        API_BASE_URL: '"http://localhost:3000/api/v1"'
+        API_BASE_URL: '"https://easypedapi.azurewebsites.net/api/v1"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

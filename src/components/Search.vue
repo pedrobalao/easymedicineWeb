@@ -3,7 +3,7 @@
         <h1>{{ searchstr }}</h1>
         <template>
           <spinner :loading="isLoading" />
-          <b-table striped :items="drugs" :fields="fields" :hover="hover" @row-clicked="rowClicked"></b-table>
+          <druglist :drugs="drugs"></druglist>
         </template>
     </div>
 </template>
@@ -50,11 +50,6 @@ export default {
           this.errors.push(e)
           this.isLoading = false
         })
-    },
-    rowClicked (record, index) {
-      const drugid = record.Id
-      // this.$router.push({ name: 'drugs', params: { drugid } })
-      this.$router.push({ name: 'Drug', params: { id: drugid } })
     }
   }
 }

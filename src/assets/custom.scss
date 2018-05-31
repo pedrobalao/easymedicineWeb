@@ -1,0 +1,20 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+$primarycolor: #0078D7;
+$secondarycolor: white;
+
+$theme-colors: (
+  "primary": $primarycolor,
+);
+
+$font-family-base: 'Nunito';
+
+.title {
+  color: $primarycolor
+}
+
+
+td {
+  color: #6c757d !important;
+}

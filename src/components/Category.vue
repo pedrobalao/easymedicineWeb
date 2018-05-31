@@ -22,7 +22,8 @@ export default {
       links: [{
         text: 'Explorar',
         to: { name: 'Categories' }
-      }]
+      }],
+      errors: []
     }
   },
   created () {
@@ -60,7 +61,6 @@ export default {
           this.loading = false
         })
         .catch(e => {
-          debugger
           this.errors.push(e)
           this.loading = false
         })

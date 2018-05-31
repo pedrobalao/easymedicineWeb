@@ -2,33 +2,35 @@
     <div>
         <spinner :loading="isLoading" />
         <div class="drug" v-if="drug != null">
-          <h1>{{ drug.Name }}</h1>
-          <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
-          <div class="dosecalc" v-if="variables.length > 0">
-            <h3>Cálculo de Doses</h3>
-            <b-form @submit="onCalc" @reset="onReset" >
-              <b-form-group id="exampleGroup4">
-                <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
-              </b-form-group>
-              <b-button type="submit" variant="primary">Calcular</b-button>
-            </b-form>
-            <h4 v-if="hasResults" >Resultados</h4>
-            <b-table striped :items="results"  :hover="true" :fields="fieldsres" v-if="hasResults" />
-          </div>
-          <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
-          <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
-          <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
-          <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
-          <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
-          <h3>Indicações</h3>
-          <b-card-group deck>
-            <b-card v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
-              <b-table stacked :items="indication.Doses" :fields="fields"></b-table>
-            </b-card>
-          </b-card-group>
-      </div>
+            <h1 class="title">{{ drug.Name }}</h1>
+            <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
+            <div class="dosecalc" v-if="variables.length > 0">
+              <p class="text-primary">Cálculo de Doses</p>
+              <b-form >
+                <b-form-group id="drugVariables">
+                  <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+                </b-form-group>
+                <b-button @click="onCalc" variant="primary">Calcular</b-button>
+              </b-form>
+              <h4 v-if="hasResults" >Resultados</h4>
+              <b-table striped :items="results" :hover="hover" :fields="fieldsres" v-if="hasResults" />
+            </div>
+            <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
+            <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
+            <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
+            <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
+            <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
+            <p class="text-primary">Indicações</p>
+            <b-card-group columns >
+              <b-card border-variant="primary"
+                header-bg-variant="primary"
+                header-text-variant="white"
+                align="center" v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
+                <b-table class="table-light" stacked :small="true" :items="indication.Doses" :fields="fields"></b-table>
+              </b-card>
+            </b-card-group>
+        </div>
     </div>
-   
 </template>
 
 <script>
@@ -127,9 +129,12 @@ export default {
               this.drugindications = drugindications.data
               this.variables = drugvariables.data
               this.isLoading = false
-
               this.variables.forEach(element => {
-                element.value = ''
+                if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
+                  element.value = element.Values[0]
+                } else {
+                  element.value = ''
+                }
               })
             }
           ))

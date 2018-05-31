@@ -7,6 +7,8 @@ import Drug from '@/components/Drug'
 import Category from '@/components/Category'
 import SubCategory from '@/components/SubCategory'
 import DoseCalculation from '@/components/DoseCalculation'
+import MedicalCalculation from '@/components/MedicalCalculation'
+import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
 
 Vue.use(Router)
 
@@ -51,6 +53,16 @@ export default new Router({
       path: '/doses',
       name: 'DoseCalculation',
       component: DoseCalculation
+    },
+    {
+      path: '/medicalcalculations',
+      name: 'MedicalCalculation',
+      component: MedicalCalculation
+    },
+    {
+      path: '/medicalcalculations/:id',
+      name: 'SpecificMedicalCalculation',
+      component: SpecificMedicalCalculation
     }
   ]
 })
