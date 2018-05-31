@@ -1,5 +1,12 @@
 <template>
+<<<<<<< HEAD
     <div class="search">        
+=======
+    <div class="search">
+        <div class="loading" v-if="isLoading">
+          <spinner :loading="isLoading" />
+        </div>
+>>>>>>> 8b976f211d8b2a93db45830af56eaa685cf6fc72
         <druglist :drugs="drugs"></druglist>
     </div>
 </template>

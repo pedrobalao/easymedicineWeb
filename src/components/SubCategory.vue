@@ -1,5 +1,8 @@
 <template>
   <div class="explore">
+    <div class="loading" v-if="loading">
+        <spinner :loading="loading" />
+    </div>
     <b-breadcrumb :items="links"/>
     <druglist :drugs="drugs"></druglist>
   </div>
@@ -12,8 +15,6 @@ export default {
   name: 'SubCategory',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       loading: false,
       msg: '',
       drugs: [],
