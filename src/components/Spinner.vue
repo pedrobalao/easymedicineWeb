@@ -1,8 +1,6 @@
 <template>
     <div class="spinner">
-        <template>
-          <pulse-loader :loading="isLoading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
-        </template>
+          <pulse-loader :loading="loading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
     </div>
 </template>
 <script>
@@ -13,8 +11,7 @@ export default {
   data () {
     return {
       loadingcolor: '#3AB982',
-      loadingsize: '45px',
-      isLoading: this.loading
+      loadingsize: '45px'
     }
   }
 }
