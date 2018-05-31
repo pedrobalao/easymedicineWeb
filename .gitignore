@@ -13,3 +13,6 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+.env.dev
+.env.prod
+.env.test

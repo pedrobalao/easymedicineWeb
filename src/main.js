@@ -12,6 +12,9 @@ import Spinner from './components/Spinner'
 import Result from './components/Result'
 import DrugList from './components/DrugList'
 import PulseLoader from 'vue-spinner/src/PulseLoader'
+import auth from '@/auth/auth'
+import store from '@/store'
+import axios from 'axios'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
@@ -23,10 +26,25 @@ Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
 Vue.component('pulse-loader', PulseLoader)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+if (localStorage.getItem('token')) axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+
+auth.initFirebase((user) => {
+  if (user) localStorage.setItem('user', user)
+
+  /* eslint-disable no-new */
+  let app
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      store,
+      router,
+      beforeCreate () {
+        auth.initContext(this)
+      },
+      template: '<App/>',
+      components: { App }
+    })
+
+    auth.setCurrentUser(user, app)
+  }
 })
