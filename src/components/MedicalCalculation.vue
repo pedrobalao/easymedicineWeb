@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-      <pulse-loader :loading="loading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
-    </div>
     <b-list-group>
         <b-list-group-item v-for="item in items" :key="item.Id"  v-on:click="clicked(item)" action>{{item.Description}}</b-list-group-item>
     </b-list-group>

@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-      <pulse-loader loading="true" color="#3AB982" size="45px"></pulse-loader>
-    </div>
     <b-breadcrumb :items="links"/>
     <druglist :drugs="drugs"></druglist>
   </div>
