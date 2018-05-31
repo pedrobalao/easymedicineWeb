@@ -1,32 +1,35 @@
 <template>
-    <div class="drug">
-        <h1 class="title">{{ drug.Name }}</h1>
-        <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
-        <div class="dosecalc" v-if="variables.length > 0">
-          <p class="text-primary">Cálculo de Doses</p>
-          <b-form >
-            <b-form-group id="drugVariables">
-              <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
-            </b-form-group>
-            <b-button @click="onCalc" variant="primary">Calcular</b-button>
-          </b-form>
-          <h4 v-if="hasResults" >Resultados</h4>
-          <b-table striped :items="results" :hover="hover" :fields="fieldsres" v-if="hasResults" />
+    <div>
+        <spinner :loading="isLoading" />
+        <div class="drug" v-if="drug != null">
+            <h1 class="title">{{ drug.Name }}</h1>
+            <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
+            <div class="dosecalc" v-if="variables.length > 0">
+              <p class="text-primary">Cálculo de Doses</p>
+              <b-form >
+                <b-form-group id="drugVariables">
+                  <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
+                </b-form-group>
+                <b-button @click="onCalc" variant="primary">Calcular</b-button>
+              </b-form>
+              <h4 v-if="hasResults" >Resultados</h4>
+              <b-table striped :items="results" :hover="false" :fields="fieldsres" v-if="hasResults" />
+            </div>
+            <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
+            <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
+            <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
+            <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
+            <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
+            <p class="text-primary">Indicações</p>
+            <b-card-group columns >
+              <b-card border-variant="primary"
+                header-bg-variant="primary"
+                header-text-variant="white"
+                align="center" v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
+                <b-table class="table-light" stacked :small="true" :items="indication.Doses" :fields="fields"></b-table>
+              </b-card>
+            </b-card-group>
         </div>
-        <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
-        <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
-        <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="presentationlabel" :value="drug.Presentation" />
-        <app-titlevalue v-if="drug.ComercialBrands" v-bind:title="comercialbrandslabel" :value="drug.ComercialBrands" />
-        <app-titlevalue v-if="drug.Obs" v-bind:title="otherdatalabel" :value="drug.Obs" />
-        <p class="text-primary">Indicações</p>
-        <b-card-group columns >
-          <b-card border-variant="primary"
-            header-bg-variant="primary"
-            header-text-variant="white"
-            align="center" v-for="indication in drugindications" :key="indication.IndicationText" :header="indication.IndicationText">
-            <b-table class="table-light" stacked small="true" :items="indication.Doses" :fields="fields"></b-table>
-          </b-card>
-        </b-card-group>
     </div>
 </template>
 
@@ -111,8 +114,8 @@ export default {
     },
     getDrug () {
       this.isLoading = true
-      var that = this
-      debugger
+      // var that = this
+      // debugger
       axios.all([
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
@@ -120,13 +123,13 @@ export default {
       ])
         .then(
           axios.spread(
-            function (drugbasics, drugindications, drugvariables) {
-              debugger
-              that.drug = drugbasics.data[0]
-              that.drugindications = drugindications.data
-              that.variables = drugvariables.data
-
-              that.variables.forEach(element => {
+            (drugbasics, drugindications, drugvariables) => {
+              // debugger
+              this.drug = drugbasics.data[0]
+              this.drugindications = drugindications.data
+              this.variables = drugvariables.data
+              this.isLoading = false
+              this.variables.forEach(element => {
                 if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
                   element.value = element.Values[0]
                 } else {

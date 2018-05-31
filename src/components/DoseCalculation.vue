@@ -1,7 +1,7 @@
 <template>
     <div class="search">
-        <div class="loading" v-if="loading">
-            <pulse-loader loading="true" color="#3AB982" size="45px"></pulse-loader>
+        <div class="loading" v-if="isLoading">
+          <spinner :loading="isLoading" />
         </div>
         <druglist :drugs="drugs"></druglist>
     </div>

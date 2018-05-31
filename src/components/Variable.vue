@@ -1,11 +1,10 @@
 <template>
     <div class="variable">
-      
       <b-input-group size="sm" v-if="type === 'NUMBER'" :prepend="description" :append="unit">
-        <b-form-input type="number" v-model="value" v-on:change="$emit('valuechanged', id, $event.target.value)" />
+        <b-form-input type="number" v-model="value" v-on:change="$emit('valuechanged', id, value)" />
       </b-input-group>
       <b-input-group size="sm" v-if="type === 'LISTVALUES'" :prepend="description" :append="unit">
-        <b-form-select v-model="value" :options="values"  size="sm"  v-on:change="$emit('valuechanged', id, $event.target.value)" />
+        <b-form-select v-model="value" :options="values"  size="sm"  v-on:change="$emit('valuechanged', id, value)" />
       </b-input-group>
     </div>
 </template>
@@ -47,5 +46,3 @@ export default {
   padding: 5px
 }
 </style>
-
-        
