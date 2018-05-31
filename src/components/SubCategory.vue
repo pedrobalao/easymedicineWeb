@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     getData () {
-      debugger
       var that = this
       this.loading = true
       var catid = this.$route.params.catid
@@ -49,7 +48,6 @@ export default {
         .then(
           axios.spread(
             function (dg, cat, subcat) {
-              debugger
               that.category = cat.data[0]
               that.links.push({
                 text: that.category.Description,
@@ -65,7 +63,6 @@ export default {
               that.loading = false
             }))
         .catch(e => {
-          debugger
           that.errors.push(e)
           that.loading = false
         })

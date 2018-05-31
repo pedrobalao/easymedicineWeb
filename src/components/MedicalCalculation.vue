@@ -33,13 +33,11 @@ export default {
           that.items = response.data
           this.loading = false
         }).catch(e => {
-          debugger
           this.errors.push(e)
           this.loading = false
         })
     },
     clicked (item) {
-      debugger
       this.$router.push({ name: 'SpecificMedicalCalculation', params: { id: item.Id } })
     }
   }

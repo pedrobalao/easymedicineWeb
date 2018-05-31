@@ -112,7 +112,6 @@ export default {
     getDrug () {
       this.isLoading = true
       var that = this
-      debugger
       axios.all([
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
@@ -121,7 +120,6 @@ export default {
         .then(
           axios.spread(
             function (drugbasics, drugindications, drugvariables) {
-              debugger
               that.drug = drugbasics.data[0]
               that.drugindications = drugindications.data
               that.variables = drugvariables.data
@@ -144,7 +142,6 @@ export default {
       var that = this
       let fillComplete = true
       let vars = {}
-      debugger
       that.variables.forEach(element => {
         vars[element.Id] = element.value
         if (element.value === '') {
@@ -154,7 +151,6 @@ export default {
       if (fillComplete) {
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/calculation?data=' + JSON.stringify(vars))
           .then(response => {
-            debugger
             that.results = []
             response.data.forEach(item => {
               that.results.push({
@@ -165,7 +161,6 @@ export default {
             // that.results = response.data
           })
           .catch(e => {
-            debugger
             alert('Erro ao calcular dose')
             that.errors.push(e)
             that.isLoading = false

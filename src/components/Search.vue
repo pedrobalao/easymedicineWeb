@@ -48,7 +48,6 @@ export default {
           this.isLoading = false
         })
         .catch(e => {
-          debugger
           this.errors.push(e)
           this.isLoading = false
         })

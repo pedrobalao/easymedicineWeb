@@ -17,7 +17,6 @@ export default {
   props: ['variable'],
   events: ['valuechanged'],
   data () {
-    debugger
     let vals = []
     if (this.variable.Values) {
       this.variable.Values.forEach(element => {

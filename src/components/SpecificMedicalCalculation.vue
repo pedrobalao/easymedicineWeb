@@ -31,7 +31,6 @@ import axios from 'axios'
 export default {
   name: 'SpecificMedicalCalculation',
   data () {
-    debugger
     return {
       medcalcid: this.$route.params.id,
       medicalcalculation: {},
@@ -55,7 +54,6 @@ export default {
     getMedCalc () {
       this.isLoading = true
       var that = this
-      debugger
       axios.all([
         axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
         axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
@@ -63,12 +61,10 @@ export default {
         .then(
           axios.spread(
             function (mcbasics, mcvariables) {
-              debugger
               that.medicalcalculation = mcbasics.data[0]
               that.variables = mcvariables.data
 
               that.variables.forEach(element => {
-                debugger
                 if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
                   element.value = element.Values[0]
                 } else {
@@ -82,7 +78,6 @@ export default {
       var that = this
       let fillComplete = true
       let vars = {}
-      debugger
       that.variables.forEach(element => {
         vars[element.Id] = element.value
         if (element.value === '') {
@@ -92,7 +87,6 @@ export default {
       if (fillComplete) {
         axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/calculation?data=' + JSON.stringify(vars))
           .then(response => {
-            debugger
             that.result = response.data
             that.resultvalue = that.result.result
             that.resultunit = that.result.resultunit
@@ -100,7 +94,6 @@ export default {
             // that.results = response.data
           })
           .catch(e => {
-            debugger
             alert('Erro ao calcular dose')
             that.errors.push(e)
             that.isLoading = false
