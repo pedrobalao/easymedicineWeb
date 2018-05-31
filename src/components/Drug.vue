@@ -1,19 +1,21 @@
 <template>
     <div>
-        <spinner :loading="isLoading" />
         <div class="drug" v-if="drug != null">
             <h1 class="title">{{ drug.Name }}</h1>
             <!-- <app-result v-for="res in results" :key="res.id" :unit="res.resultunit" :description="res.resultdescription"  :value="res.result"/>-->
             <div class="dosecalc" v-if="variables.length > 0">
-              <p class="text-primary">Cálculo de Doses</p>
-              <b-form >
+              <p class="text-primary" >Cálculo de Doses</p>
+              <b-form class="formvars">
                 <b-form-group id="drugVariables">
                   <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
                 </b-form-group>
-                <b-button @click="onCalc" variant="primary">Calcular</b-button>
+                <p class="text-danger" size="sm" v-if="errorvars">{{errorvars}}</p>
+                <!--<b-button @click="onCalc" variant="primary" class="btn">Calcular</b-button>-->
               </b-form>
-              <h4 v-if="hasResults" >Resultados</h4>
-              <b-table striped :items="results" :hover="false" :fields="fieldsres" v-if="hasResults" />
+              <b-card-group columns v-if="hasResults" class="resultgroup">
+                <app-result v-if="hasResults"  v-for="res in results" :key="res.resultdescription" :description="res.resultdescription" :value="res.result" />
+              </b-card-group>
+              <!--<b-table striped :items="results" :hover="false" :fields="fieldsres" v-if="hasResults" />-->
             </div>
             <app-titlevalue v-if="drug.ConterIndications" v-bind:title="conterindicationslabel" :value="drug.ConterIndications" />
             <app-titlevalue v-if="drug.SecondaryEfects" v-bind:title="secondaryeffectslabel" :value="drug.SecondaryEfects" />
@@ -41,6 +43,7 @@ export default {
   data () {
     console.log('data')
     return {
+      errorvars: '',
       conterindicationslabel: 'Contra-Indicações',
       secondaryeffectslabel: 'Efeitos Secundários',
       presentationlabel: 'Apresentação',
@@ -52,20 +55,6 @@ export default {
       drugindications: [],
       variables: [],
       results: [],
-      fieldsres: {
-        resultdescription: {
-          label: 'Descrição',
-          sortable: false
-        },
-        result: {
-          label: 'Resultado',
-          sortable: false
-        }// ,
-        // resultunit: {
-        //   label: 'Unidade',
-        //   sortable: false
-        // }
-      },
       fields: {
         IdVia: {
           label: 'Via',
@@ -114,12 +103,8 @@ export default {
     },
     getDrug () {
       this.isLoading = true
-<<<<<<< HEAD
-      var that = this
-=======
       // var that = this
       // debugger
->>>>>>> 8b976f211d8b2a93db45830af56eaa685cf6fc72
       axios.all([
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
@@ -127,14 +112,6 @@ export default {
       ])
         .then(
           axios.spread(
-<<<<<<< HEAD
-            function (drugbasics, drugindications, drugvariables) {
-              that.drug = drugbasics.data[0]
-              that.drugindications = drugindications.data
-              that.variables = drugvariables.data
-
-              that.variables.forEach(element => {
-=======
             (drugbasics, drugindications, drugvariables) => {
               // debugger
               this.drug = drugbasics.data[0]
@@ -142,7 +119,6 @@ export default {
               this.variables = drugvariables.data
               this.isLoading = false
               this.variables.forEach(element => {
->>>>>>> 8b976f211d8b2a93db45830af56eaa685cf6fc72
                 if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
                   element.value = element.Values[0]
                 } else {
@@ -155,6 +131,7 @@ export default {
     valueChanged (id, value) {
       var that = this
       that.variables.find(item => item.Id === id).value = value
+      this.onCalc()
     },
     onCalc () {
       var that = this
@@ -167,6 +144,7 @@ export default {
         }
       })
       if (fillComplete) {
+        that.errorvars = ''
         axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/calculation?data=' + JSON.stringify(vars))
           .then(response => {
             that.results = []
@@ -184,9 +162,20 @@ export default {
             that.isLoading = false
           })
       } else {
-        alert('Preencha todas variáveis para efetuar o cálculo!')
+        that.results = []
+        that.errorvars = 'Preencha todas as variáveis para efectuar o cálculo da dose.'
       }
     }
   }
 }
 </script>
+
+<style>
+.formvars{
+  padding-bottom: 10px;
+}
+.btn{
+  float:right;
+}
+</style>
+

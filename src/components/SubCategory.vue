@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-        <spinner :loading="loading" />
-    </div>
     <b-breadcrumb :items="links"/>
     <druglist :drugs="drugs"></druglist>
   </div>

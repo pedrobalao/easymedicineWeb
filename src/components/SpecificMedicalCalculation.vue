@@ -9,18 +9,12 @@
             <b-form-group id="exampleGroup4">
               <variable v-for="variable in variables" :key="variable.Id" :variable="variable" v-on:valuechanged="valueChanged"/>
             </b-form-group>
-            <b-button @click="onCalc" variant="primary">Calcular</b-button>
+            <p class="text-danger" size="sm" v-if="errorvars">{{errorvars}}</p>
+            <!--<b-button @click="onCalc" variant="primary">Calcular</b-button>-->
           </b-form>
         </div>
         <div class="result" >
-          <b-jumbotron bg-variant="primary" text-variant="white" border-variant="primary">
-            <template slot="header">
-              {{resultvalue +' '+resultunit}}
-            </template>
-            <template slot="lead">
-              {{medicalcalculation.Observation}}
-            </template>
-          </b-jumbotron>
+          <app-result v-if="resultvalue" :value="resultvalue +' '+resultunit" :observation="medicalcalculation.Observation" />
         </div>
     </div>
 </template>
@@ -32,6 +26,7 @@ export default {
   name: 'SpecificMedicalCalculation',
   data () {
     return {
+      errorvars: '',
       medcalcid: this.$route.params.id,
       medicalcalculation: {},
       variables: [],
@@ -50,6 +45,11 @@ export default {
     valueChanged (id, value) {
       var that = this
       that.variables.find(item => item.Id === id).value = value
+      if (value) {
+        this.onCalc()
+      } else {
+        this.results = []
+      }
     },
     getMedCalc () {
       this.isLoading = true
@@ -85,6 +85,7 @@ export default {
         }
       })
       if (fillComplete) {
+        that.errorvars = ''
         axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/calculation?data=' + JSON.stringify(vars))
           .then(response => {
             that.result = response.data
@@ -99,7 +100,8 @@ export default {
             that.isLoading = false
           })
       } else {
-        alert('Preencha todas variáveis para efetuar o cálculo!')
+        that.result = {}
+        that.errorvars = 'Preencha todas as variáveis para efectuar o cálculo da dose.'
       }
     }
   }

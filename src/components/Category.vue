@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-      <spinner :loading="loading" />
-    </div>
     <b-breadcrumb :items="links"/>
     <b-list-group>
         <b-list-group-item v-for="cat in categories" :key="cat.Id"  v-on:click="clicked(cat)" action>{{cat.Description}}</b-list-group-item>

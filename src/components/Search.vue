@@ -2,7 +2,6 @@
     <div class="search">
         <h1>{{ searchstr }}</h1>
         <template>
-          <spinner :loading="isLoading" />
           <druglist :drugs="drugs"></druglist>
         </template>
     </div>
