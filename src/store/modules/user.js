@@ -14,26 +14,23 @@ const getters = {
 const mutations = {
   setUser: (state, user) => {
     state.user = user
+  },
+  setIsLoggedIn: (state, isLoggedIn) => {
+    state.isLoggedIn = isLoggedIn
   }
 }
 
 const actions = {
-  setCurrentUser: ({ commit }) => {
-    commit('setUser', auth.user())
-    if (auth.user() == null) {
+  setCurrentUser: ({ commit }, user) => {
+    commit('setUser', user)
+    if (user == null) {
       localStorage.removeItem('user')
-      return localStorage.removeItem('token')
+      localStorage.removeItem('token')
+      return commit('setIsLoggedIn', false)
     }
-    auth.user().getIdToken(true).then((idToken) => {
+    user.getIdToken(true).then((idToken) => {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + idToken
       localStorage.setItem('token', idToken)
-      /*
-      axios.post(process.env.API_BASE_URL + '/auth/authorize', {token: idToken})
-        .then(response => {
-          commit('setUser', auth.user())
-        }).catch(() => {
-          auth.logout()
-        }) */
     }).catch((error) => {
       console.log(error)
     })

@@ -37,14 +37,18 @@ const auth = {
     ui.start(container, uiConfig)
   },
   isLoggedIn () {
-    return localStorage.getItem('user')
+    return localStorage.getItem('user') != null
+  },
+  updateLoginStorage (user, token) {
+    if (token) localStorage.setItem('token', token)
+    if (user) localStorage.setItem('user', user)
   },
   user () {
     return this.context ? firebase.auth().currentUser : null
   },
   setCurrentUser (user, app) {
     if (user) {
-      app.$store.dispatch('setCurrentUser')
+      app.$store.dispatch('setCurrentUser', user)
     }
 
     if (!auth.isLoggedIn()) app.$router.push('/')

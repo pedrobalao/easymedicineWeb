@@ -13,12 +13,19 @@
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
           <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>-->
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto" v-if="user != null">
           <b-nav-form v-show="isLogged">
             <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Principio Ativo, Indicação..." v-model="searchstr" />
             <b-button size="sm" variant="success" class="my-2 my-sm-0" type="submit" v-on:click="search">Pesquisar</b-button>
           </b-nav-form>
-          <b-button v-if="isLogged" size="sm" variant="danger" class="my-2 my-sm-0" type="buttong" @click="logout">Logout</b-button>
+          
+          <b-nav-item-dropdown right>
+          
+            <template slot="button-content">
+              <b-img :src="user.photoURL" style="max-height: 40px;" fluid rounded="circle" />
+            </template>
+            <b-dropdown-item v-if="isLogged" @click="logout" class="text-danger"><font-awesome-icon icon="power-off" /> Logout</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -43,7 +50,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLogged: 'isLogged'
+      isLogged: 'isLogged',
+      user: 'user'
     })
   },
   methods: {
