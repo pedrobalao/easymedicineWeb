@@ -6,6 +6,7 @@ const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.conf')
+const Dotenv = require('dotenv-webpack')
 
 const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
@@ -21,6 +22,10 @@ const webpackConfig = merge(baseConfig, {
     }
   },
   plugins: [
+    new Dotenv({
+      path: 'test.env', // load this now instead of the ones in '.env'
+      safe: true
+    }),
     new webpack.DefinePlugin({
       'process.env': require('../config/test.env')
     })

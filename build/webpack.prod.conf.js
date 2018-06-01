@@ -1,6 +1,5 @@
 'use strict'
 
-const fs = require('fs')
 const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
@@ -13,6 +12,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const loadMinified = require('./load-minified')
+const Dotenv = require('dotenv-webpack')
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -33,10 +33,13 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new Dotenv({
+      path: './.env.prod', // load this now instead of the ones in '.env'
+      safe: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: env.NODE_ENV,
-        API_BASE_URL: '"https://easypedapi.azurewebsites.net/api/v1"'
+        NODE_ENV: env.NODE_ENV
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
