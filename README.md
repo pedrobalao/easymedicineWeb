@@ -2,6 +2,24 @@
 
 > De médico para médico
 
+## Configuration
+
+#### Environment variables
+
+Environment variables can be placed inside *.env.<environment_name>* file.
+
+In the root of this repository, there is a *.env.example* file that contains an example of the env file:
+
+```
+FIREBASE_API_KEY="x"
+FIREBASE_AUTH_DOMAIN="xxx.firebaseapp.com"
+FIREBASE_DATABASE_URL="https://xxx.firebaseio.com"
+FIREBASE_PROJECT_ID="xxx"
+FIREBASE_STORAGE_BUCKET="xxx.appspot.com"
+FIREBASE_MSG_SENDING_ID="123"
+API_BASE_URL="http://localhost:3000/api/v1"
+```
+
 ## Build Setup
 
 ``` bash
