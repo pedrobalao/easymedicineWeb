@@ -2,7 +2,6 @@
     <div class="search">
         <h1>{{ searchstr }}</h1>
         <template>
-          <pulse-loader :loading="isLoading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
           <druglist :drugs="drugs"></druglist>
         </template>
     </div>
@@ -15,8 +14,6 @@ export default {
   name: 'search',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       isLoading: false,
       selected: null,
       hover: true,
@@ -48,7 +45,6 @@ export default {
           this.isLoading = false
         })
         .catch(e => {
-          debugger
           this.errors.push(e)
           this.isLoading = false
         })

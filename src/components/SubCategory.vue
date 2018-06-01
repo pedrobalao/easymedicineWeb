@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-      <pulse-loader loading="true" color="#3AB982" size="45px"></pulse-loader>
-    </div>
     <b-breadcrumb :items="links"/>
     <druglist :drugs="drugs"></druglist>
   </div>
@@ -15,8 +12,6 @@ export default {
   name: 'SubCategory',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       loading: false,
       msg: '',
       drugs: [],
@@ -38,7 +33,6 @@ export default {
   },
   methods: {
     getData () {
-      debugger
       var that = this
       this.loading = true
       var catid = this.$route.params.catid
@@ -52,7 +46,6 @@ export default {
         .then(
           axios.spread(
             function (dg, cat, subcat) {
-              debugger
               that.category = cat.data[0]
               that.links.push({
                 text: that.category.Description,
@@ -68,7 +61,6 @@ export default {
               that.loading = false
             }))
         .catch(e => {
-          debugger
           that.errors.push(e)
           that.loading = false
         })

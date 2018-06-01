@@ -1,8 +1,5 @@
 <template>
   <div class="explore">
-    <div class="loading" v-if="loading">
-      <pulse-loader :loading="loading" :color="loadingcolor" :size="loadingsize"></pulse-loader>
-    </div>
     <b-breadcrumb :items="links"/>
     <b-list-group>
         <b-list-group-item v-for="cat in categories" :key="cat.Id"  v-on:click="clicked(cat)" action>{{cat.Description}}</b-list-group-item>
@@ -17,8 +14,6 @@ export default {
   name: 'Categories',
   data () {
     return {
-      loadingcolor: '#3AB982',
-      loadingsize: '45px',
       loading: false,
       categories: [],
       links: [{

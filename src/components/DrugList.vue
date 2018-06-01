@@ -21,7 +21,8 @@ export default {
           label: 'Contra Indicações',
           sortable: true
         }
-      }
+      },
+      hover: false
     }
   },
   methods: {

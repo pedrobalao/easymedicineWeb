@@ -1,8 +1,5 @@
 <template>
-    <div class="search">
-        <div class="loading" v-if="loading">
-            <pulse-loader loading="true" color="#3AB982" size="45px"></pulse-loader>
-        </div>
+    <div class="search">        
         <druglist :drugs="drugs"></druglist>
     </div>
 </template>
@@ -44,7 +41,7 @@ export default {
           this.isLoading = false
         })
         .catch(e => {
-          debugger
+          // debugger
           this.errors.push(e)
           this.isLoading = false
         })
