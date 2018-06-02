@@ -66,7 +66,7 @@ export default {
 
               that.variables.forEach(element => {
                 if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
-                  element.value = element.Values[0]
+                  element.value = element.Values[0].Value
                 } else {
                   element.value = ''
                 }
