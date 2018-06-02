@@ -9,6 +9,7 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -22,11 +23,15 @@ module.exports = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-eval-source-map',
   plugins: [
+    new Dotenv({
+      path: './.env.dev', // load this now instead of the ones in '.env'
+      safe: true
+    }),
     new webpack.DefinePlugin({
-      'process.env': {
+      'process.env': Object.assign({
         NODE_ENV: config.dev.env.NODE_ENV,
-        // API_BASE_URL: '"https://easypedapi.azurewebsites.net/api/v1"'
-        API_BASE_URL: '"http://localhost:3000/api/v1"'
+        API_BASE_URL: '"https://easypedapi.azurewebsites.net/api/v1"'
+        // API_BASE_URL: '"http://localhost:3000/api/v1"'
       }
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
