@@ -9,7 +9,9 @@ before_deploy:
 before_install:
 - openssl aes-256-cbc -K $encrypted_745ce00b467b_key -iv $encrypted_745ce00b467b_iv -in envs.tar.enc -out envs.tar -d
 - tar xvf envs.tar
+before_deploy:
+  - cd dist
 deploy:
   provider: azure_web_apps
   site: easypedweb
-
+  
