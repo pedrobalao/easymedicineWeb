@@ -11,4 +11,5 @@ before_install:
 - tar xvf envs.tar
 deploy:
   provider: azure_web_apps
+  site: easypedweb
 
