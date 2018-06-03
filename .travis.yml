@@ -13,4 +13,5 @@ before_deploy:
 deploy:
   provider: azure_web_apps
   site: easypedweb
+  project: dist
   
