@@ -22,56 +22,56 @@ let routes = [
   {
     path: '/',
     name: 'dashboard',
-    component: Hello,
-    meta: { requireAuth: true }
+    component: Hello// ,
+    // meta: { requireAuth: true }
   },
   {
     path: '/categories',
     name: 'Categories',
-    component: Category,
-    meta: { requireAuth: true }
+    component: Category
+    // meta: { requireAuth: true }
   },
   {
     path: '/categories/:catid',
     name: 'SpecificCategory',
-    component: Category,
-    meta: { requireAuth: true }
+    component: Category
+    // meta: { requireAuth: true }
   },
   {
     path: '/categories/:catid/subcategories/:idsubcat',
     name: 'SpecificSubCategory',
-    component: SubCategory,
-    meta: { requireAuth: true }
+    component: SubCategory
+    // meta: { requireAuth: true }
   },
   {
     path: '/search',
     name: 'Search',
-    component: Search,
-    meta: { requireAuth: true }
+    component: Search
+    // meta: { requireAuth: true }
   },
   {
     path: '/drug/:id',
     name: 'Drug',
-    component: Drug,
-    meta: { requireAuth: true }
+    component: Drug
+    // meta: { requireAuth: true }
   },
   {
     path: '/doses',
     name: 'DoseCalculation',
-    component: DoseCalculation,
-    meta: { requireAuth: true }
+    component: DoseCalculation
+    // meta: { requireAuth: true }
   },
   {
     path: '/medicalcalculations',
     name: 'MedicalCalculation',
-    component: MedicalCalculation,
-    meta: { requireAuth: true }
+    component: MedicalCalculation
+    // meta: { requireAuth: true }
   },
   {
     path: '/medicalcalculations/:id',
     name: 'SpecificMedicalCalculation',
-    component: SpecificMedicalCalculation,
-    meta: { requireAuth: true }
+    component: SpecificMedicalCalculation
+    // meta: { requireAuth: true }
   }
 ]
 
