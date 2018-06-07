@@ -3,9 +3,6 @@ language: node_js
 node_js:
 - stable
 before_script:
-- npm install -g npm
-- npm install -g node-gyp
-- npm install -g fibers
 - npm install
 before_install:
 - openssl aes-256-cbc -K $encrypted_745ce00b467b_key -iv $encrypted_745ce00b467b_iv -in envs.tar.enc -out envs.tar -d
