@@ -62,7 +62,7 @@ export default {
     },
     search: function (event) {
       if (this.searchstr) {
-        this.$router.push({ path: 'search', query: { searchstr: this.searchstr } })
+        this.$router.push({ name: 'Search', query: { searchstr: this.searchstr } })
       }
     }
   }
