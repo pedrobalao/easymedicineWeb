@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'Categories',
@@ -28,7 +28,7 @@ export default {
       // debugger
       var that = this
       this.loading = true
-      axios.get(process.env.API_BASE_URL + '/medicalcalculations')
+      global.api.medicalcalculations()
         .then(response => {
           that.items = response.data
           this.loading = false

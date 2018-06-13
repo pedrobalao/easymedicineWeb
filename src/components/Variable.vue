@@ -34,7 +34,11 @@ export default {
   watch: {
     value: function (val, oldVal) {
       // alert('Fired! ' + val)
-      this.$emit('valuechanged', this.id, val)
+      if (this.type === 'LISTVALUES') {
+        this.$emit('valuechanged', this.id, val)
+      } else {
+        this.$emit('valuechanged', this.id, val)
+      }
     }
   }
 }

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'search',
@@ -34,7 +34,7 @@ export default {
   methods: {
     getData () {
       this.isLoading = true
-      axios.get(process.env.API_BASE_URL + '/drugs/?calculation=true')
+      global.http.get(process.env.API_BASE_URL + '/drugs/?calculation=true')
         .then(response => {
           // JSON responses are automatically parsed.
           this.drugs = response.data

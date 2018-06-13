@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'Categories',
@@ -43,7 +43,7 @@ export default {
       }]
       if (catid) {
         url = url + '/' + catid + '/subcategories'
-        axios.get(process.env.API_BASE_URL + '/categories/' + catid)
+        global.http.get(process.env.API_BASE_URL + '/categories/' + catid)
           .then(response => {
             let category = response.data[0]
             this.links.push({
@@ -52,7 +52,7 @@ export default {
             })
           })
       }
-      axios.get(process.env.API_BASE_URL + url)
+      global.http.get(process.env.API_BASE_URL + url)
         .then(response => {
           this.categories = response.data
           this.loading = false

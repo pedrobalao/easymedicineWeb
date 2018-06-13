@@ -2,6 +2,7 @@
   <div class="hello" v-if="user != null">
     <h1>Welcome {{ user.displayName }}</h1>
   </div>
+  
 </template>
 
 <script>

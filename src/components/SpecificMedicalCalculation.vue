@@ -55,8 +55,8 @@ export default {
       this.isLoading = true
       var that = this
       axios.all([
-        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
-        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
+        global.http.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
+        global.http.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
       ])
         .then(
           axios.spread(
@@ -66,7 +66,7 @@ export default {
 
               that.variables.forEach(element => {
                 if (element.Type === 'LISTVALUES' && element.Values.length > 0) {
-                  element.value = element.Values[0]
+                  element.value = element.Values[0].Value
                 } else {
                   element.value = ''
                 }
