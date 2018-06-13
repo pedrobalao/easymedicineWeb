@@ -55,8 +55,8 @@ export default {
       this.isLoading = true
       var that = this
       axios.all([
-        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
-        axios.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
+        global.http.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid),
+        global.http.get(process.env.API_BASE_URL + '/medicalcalculations/' + this.medcalcid + '/variables')
       ])
         .then(
           axios.spread(

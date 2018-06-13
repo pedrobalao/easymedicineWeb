@@ -106,9 +106,9 @@ export default {
       // var that = this
       // debugger
       axios.all([
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
-        axios.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/variables')
+        global.http.get(process.env.API_BASE_URL + '/drugs/' + this.drugid),
+        global.http.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/indications'),
+        global.http.get(process.env.API_BASE_URL + '/drugs/' + this.drugid + '/variables')
       ])
         .then(
           axios.spread(
