@@ -20,6 +20,16 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome/styles.css'
 import fontawesome from '@fortawesome/fontawesome'
 import { faEdit } from '@fortawesome/fontawesome-free-solid'
+import VueAnalytics from 'vue-analytics'
+
+Vue.use(VueAnalytics, {
+  id: process.env.GOOGLE_ANALYTICS_ID,
+  router,
+  disabled: true,
+  autoTracking: {
+    pageviewOnLoad: true
+  }
+})
 
 fontawesome.config = {
   autoAddCss: false
