@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'search',
@@ -43,7 +43,7 @@ export default {
     getData () {
       this.isLoading = true
       this.searchstr = this.$route.query.searchstr
-      axios.get(process.env.API_BASE_URL + '/drugs/search?searchstr=' + this.searchstr)
+      global.http.get(process.env.API_BASE_URL + '/drugs/search?searchstr=' + this.searchstr)
         .then(response => {
           // JSON responses are automatically parsed.
           this.drugs = response.data
