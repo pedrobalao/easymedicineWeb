@@ -11,6 +11,7 @@ import Variable from './components/Variable'
 import Spinner from './components/Spinner'
 import Result from './components/Result'
 import DrugList from './components/DrugList'
+import LoadingComponent from './components/Loading'
 import PulseLoader from 'vue-spinner/src/PulseLoader'
 import auth from '@/auth/auth'
 import store from '@/store'
@@ -19,6 +20,16 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome/styles.css'
 import fontawesome from '@fortawesome/fontawesome'
 import { faEdit } from '@fortawesome/fontawesome-free-solid'
+import VueAnalytics from 'vue-analytics'
+
+Vue.use(VueAnalytics, {
+  id: process.env.GOOGLE_ANALYTICS_ID,
+  router,
+  disabled: true,
+  autoTracking: {
+    pageviewOnLoad: true
+  }
+})
 
 fontawesome.config = {
   autoAddCss: false
@@ -35,6 +46,10 @@ Vue.component('spinner', Spinner)
 Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
 Vue.component('pulse-loader', PulseLoader)
+Vue.component('loading-component', LoadingComponent)
+
+global.api = require('@/api/api')
+global.http = require('@/api/http')
 
 if (localStorage.getItem('token')) axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
 

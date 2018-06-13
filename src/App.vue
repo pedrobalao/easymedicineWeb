@@ -30,7 +30,8 @@
       </b-collapse>
     </b-navbar>
     <!-- routes will be rendered here -->
-    <router-view class="basic" />
+    <loading-component v-show="isLoading"></loading-component>
+    <router-view class="basic" v-show="!isLoading"/>
   </div>
 </template>
 
@@ -52,6 +53,9 @@ export default {
     ...mapGetters({
       isLogged: 'isLogged',
       user: 'user'
+    }),
+    ...mapGetters('loading', {
+      isLoading: 'isLoading'
     })
   },
   methods: {

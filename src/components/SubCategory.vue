@@ -39,9 +39,9 @@ export default {
       var idsubcat = this.$route.params.idsubcat
       let url = '/categories/' + catid + '/subcategories/' + idsubcat + '/drugs'
       axios.all([
-        axios.get(process.env.API_BASE_URL + url),
-        axios.get(process.env.API_BASE_URL + '/categories/' + catid),
-        axios.get(process.env.API_BASE_URL + '/categories/' + catid + '/subcategories/' + idsubcat)
+        global.http.get(process.env.API_BASE_URL + url),
+        global.http.get(process.env.API_BASE_URL + '/categories/' + catid),
+        global.http.get(process.env.API_BASE_URL + '/categories/' + catid + '/subcategories/' + idsubcat)
       ])
         .then(
           axios.spread(
