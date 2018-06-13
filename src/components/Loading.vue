@@ -1,13 +1,14 @@
 <template>
     <div class="container" style="margin-top: 50px">
+        
         <div class="row">
             <div class="offset-md-5 col-sm-2 text-center">
-                <div class="loader" />
+                <rise-loader loading="true" color="#0078D7" size="15px"></rise-loader>
+                <!--<div class="loader" />-->
             </div>
         </div>
     </div>  
 </template>
-
 <script>
 
 export default {
