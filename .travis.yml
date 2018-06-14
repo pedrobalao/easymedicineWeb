@@ -12,6 +12,8 @@ before_install:
 install: 
 - npm install
 - npm run build
+before_deploy:
+- cd dist
 deploy:
   provider: azure_web_apps
   site: easypedweb
