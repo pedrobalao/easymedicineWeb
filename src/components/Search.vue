@@ -1,10 +1,23 @@
 <template>
+  <div class="page">
     <div class="search">
-        <h1>{{ searchstr }}</h1>
-        <template>
-          <druglist :drugs="drugs"></druglist>
-        </template>
+      <div class="searchdiv">
+        <b-form>
+          <div>
+            <b-form-input variant="success" type="text" class="searchinput" placeholder="Principio Ativo, Indicação..." v-model="presearchstr" @keyup.enter.native="search"/>
+          </div>
+          <div class="searchbutton">
+            <b-button variant="success"  v-on:click="search">Pesquisar</b-button>
+          </div>
+        </b-form>
+      </div>
     </div>
+      
+    <h1>{{ searchstr }}</h1>
+    <template>
+      <druglist :drugs="drugs"></druglist>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -17,6 +30,7 @@ export default {
       isLoading: false,
       selected: null,
       hover: true,
+      presearchstr: this.$route.query.searchstr,
       searchstr: this.$route.query.searchstr,
       drugs: [],
       fields: {
@@ -40,9 +54,15 @@ export default {
     '$route': 'getData'
   },
   methods: {
+    search: function (event) {
+      if (this.presearchstr) {
+        this.$router.push({ name: 'Search', query: { searchstr: this.presearchstr } })
+      }
+    },
     getData () {
       this.isLoading = true
       this.searchstr = this.$route.query.searchstr
+      this.presearchstr = this.searchstr
       global.http.get(process.env.API_BASE_URL + '/drugs/search?searchstr=' + this.searchstr)
         .then(response => {
           // JSON responses are automatically parsed.
@@ -57,3 +77,26 @@ export default {
   }
 }
 </script>
+
+<style>
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchdiv {
+  width: 70%;
+  padding: 20px;
+  resize: both;
+  overflow: auto;
+}
+
+.searchbutton{
+  align-items: center;
+  padding-top: 5px;
+}
+
+
+</style>
+

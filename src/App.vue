@@ -32,6 +32,9 @@
     <!-- routes will be rendered here -->
     <loading-component v-show="isLoading"></loading-component>
     <router-view class="basic" v-show="!isLoading"/>
+    <b-navbar toggleable="md" type="dark" variant="light" fixed="bottom">
+      <div>easyped &copy; {{ new Date().getFullYear() }}</div>
+    </b-navbar>
   </div>
 </template>
 
@@ -80,4 +83,6 @@ export default {
   .basic {
     padding: 10px;
   }
+
+  
 </style>
