@@ -81,7 +81,7 @@ a {
 }
 
 .searchdiv {
-  width: 70%;
+  width: 90%;
   padding: 20px;
   resize: both;
   overflow: auto;

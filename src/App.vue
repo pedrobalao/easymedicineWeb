@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <cookie-law theme="blood-orange--rounded" message="O nosso website armazena cookies no seu equipamento que são utilizados para assegurar funcionalidades que lhe permitem uma melhor experiência de navegação e utilização. Ao prosseguir com a navegação está a consentir a sua utilização." buttonText="OK!"></cookie-law>
     <b-navbar toggleable="md" type="dark" variant="primary" :sticky="true">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-badge variant="danger">beta</b-badge>
@@ -35,10 +36,14 @@
     <b-navbar toggleable="md" type="dark" variant="light" fixed="bottom">
       <div>easyped &copy; {{ new Date().getFullYear() }}</div>
     </b-navbar>
+    
   </div>
 </template>
 
 <script>
+
+import CookieLaw from 'vue-cookie-law'
+
 import auth from '@/auth/auth'
 import { mapGetters } from 'vuex'
 
@@ -72,6 +77,9 @@ export default {
         this.$router.push({ name: 'Search', query: { searchstr: this.searchstr } })
       }
     }
+  },
+  components: {
+    CookieLaw
   }
 }
 </script>
