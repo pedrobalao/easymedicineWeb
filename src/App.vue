@@ -33,17 +33,11 @@
     <!-- routes will be rendered here -->
     <loading-component v-show="isLoading"></loading-component>
     <router-view class="basic" v-show="!isLoading"/>
-    <b-navbar toggleable="md" type="dark" variant="light" fixed="bottom">
-      <div>easyped &copy; {{ new Date().getFullYear() }}</div>
-    </b-navbar>
-    
+    <div>easyped &copy; {{ new Date().getFullYear() }}</div>
   </div>
 </template>
 
 <script>
-
-import CookieLaw from 'vue-cookie-law'
-
 import auth from '@/auth/auth'
 import { mapGetters } from 'vuex'
 
@@ -77,9 +71,6 @@ export default {
         this.$router.push({ name: 'Search', query: { searchstr: this.searchstr } })
       }
     }
-  },
-  components: {
-    CookieLaw
   }
 }
 </script>

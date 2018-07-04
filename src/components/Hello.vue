@@ -1,5 +1,6 @@
 <template>
 <div>
+  <hello-carousel />
   <div class="hello" v-if="user != null">
     <h1>Welcome {{ user.displayName }}</h1>
   </div>
@@ -15,17 +16,14 @@
       </b-form>
     </div>
   </div>
+  
   <div class="stores">
     <div class="" style="width:300px">
-    <a href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a>
-  </div>
-  <div class="" style="width:300px">
-    <a href='https://play.google.com/store/apps/details?id=com.easymedicine.easymedicine&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' >
-        <img alt='Get it on Google Play' style="height:60px;" src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
-      </a>
-  </div>
-    
+      <a href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;margin:6%;width:88%;background-size:contain;"></a>
+      <a href="https://play.google.com/store/apps/details?id=com.easymedicine.easymedicine&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+        <img alt="Get it on Google Play" src="../assets/googleplay_badge.png"/></a>
     </div>
+  </div>
 </div>  
 </template>
 

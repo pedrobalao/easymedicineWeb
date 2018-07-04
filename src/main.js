@@ -21,11 +21,15 @@ import '@fortawesome/fontawesome/styles.css'
 import fontawesome from '@fortawesome/fontawesome'
 import { faEdit } from '@fortawesome/fontawesome-free-solid'
 import VueAnalytics from 'vue-analytics'
+import CookieLaw from 'vue-cookie-law'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+import HelloCarousel from './components/HelloCarousel'
 
 Vue.use(VueAnalytics, {
   id: process.env.GOOGLE_ANALYTICS_ID,
   router,
-  disabled: true,
+  disabled: false,
   autoTracking: {
     pageviewOnLoad: true
   }
@@ -46,7 +50,11 @@ Vue.component('spinner', Spinner)
 Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
 Vue.component('pulse-loader', PulseLoader)
+Vue.component('hello-carousel', HelloCarousel)
 Vue.component('loading-component', LoadingComponent)
+Vue.component('cookie-law', CookieLaw)
+Vue.component('swiper', VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper)
 
 global.api = require('@/api/api')
 global.http = require('@/api/http')
