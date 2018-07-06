@@ -1,12 +1,8 @@
 <template>
 <div>
-  <hello-carousel />
-  <div class="hello" v-if="user != null">
-    <h1>Welcome {{ user.displayName }}</h1>
-  </div>
   <div class="search">
     <div class="searchdiv">
-      <b-form>
+      <b-form @submit.prevent="onSubmit">
         <div>
           <b-form-input type="text" class="searchinput" placeholder="Medicamento, Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
         </div>
@@ -16,7 +12,7 @@
       </b-form>
     </div>
   </div>
-  
+  <hello-carousel />
   <div class="stores">
     <div class="" style="width:300px">
       <a href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;margin:6%;width:88%;background-size:contain;"></a>

@@ -16,7 +16,7 @@
           <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>-->
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" >
-          <b-nav-form >
+          <b-nav-form @submit.prevent="onSubmit">
             <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
             <b-button size="sm" variant="success" class="my-2 my-sm-0" v-on:click="search">Pesquisar</b-button>
           </b-nav-form>
@@ -34,6 +34,7 @@
     <loading-component v-show="isLoading"></loading-component>
     <router-view class="basic" v-show="!isLoading"/>
     <div>easyped &copy; {{ new Date().getFullYear() }}</div>
+    <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.easyped.eu&width=184&layout=button_count&action=recommend&size=large&show_faces=true&share=true&height=46&appId=1477670789018415" width="184" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
   </div>
 </template>
 

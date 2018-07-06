@@ -2,7 +2,7 @@
   <div class="page">
     <div class="search">
       <div class="searchdiv">
-        <b-form>
+        <b-form @submit.prevent="onSubmit"> 
           <div>
             <b-form-input variant="success" type="text" class="searchinput" placeholder="Principio Ativo, Indicação..." v-model="presearchstr" @keyup.enter.native="search"/>
           </div>
