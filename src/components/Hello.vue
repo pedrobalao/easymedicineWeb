@@ -1,25 +1,23 @@
 <template>
 <div>
+  <b-container>
+    <b-row>
+        <b-col cols="1"></b-col>
+        <b-col cols="7"><b-form-input type="text" placeholder="Medicamento, Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/></b-col>
+        <b-col cols="3"><b-button  variant="success"  v-on:click="search">Pesquisar</b-button></b-col>
+        <b-col cols="1"></b-col>
+    </b-row>
+  </b-container>
+
   <div class="search">
-    <div class="searchdiv">
-      <b-form @submit.prevent="onSubmit">
-        <div>
-          <b-form-input type="text" class="searchinput" placeholder="Medicamento, Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
-        </div>
-        <div class="searchbutton">
-          <b-button  variant="success"  v-on:click="search">Pesquisar</b-button>
-        </div>
+    <div class="searchdiv" >
+      <b-form @submit.prevent="onSubmit" inline>
+        <b-form-input type="text" class="col-3 col-9" placeholder="Medicamento, Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
+        <b-button  variant="success" class="mb-3 mr-sm-2 mb-sm-0" v-on:click="search">Pesquisar</b-button>
       </b-form>
     </div>
   </div>
   <hello-carousel />
-  <div class="stores">
-    <div class="" style="width:300px">
-      <a href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;margin:6%;width:88%;background-size:contain;"></a>
-      <a href="https://play.google.com/store/apps/details?id=com.easymedicine.easymedicine&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-        <img alt="Get it on Google Play" src="../assets/googleplay_badge.png"/></a>
-    </div>
-  </div>
 </div>  
 </template>
 

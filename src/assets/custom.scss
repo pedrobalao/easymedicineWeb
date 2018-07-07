@@ -1,5 +1,5 @@
 @import "node_modules/bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 $primarycolor: #0078D7;
 $secondarycolor: white;
@@ -8,7 +8,7 @@ $theme-colors: (
   "primary": $primarycolor,
 );
 
-$font-family-base: 'Nunito';
+$font-family-base: 'Open Sans', sans-serif;
 
 .title {
   color: $primarycolor

@@ -33,8 +33,7 @@
     <!-- routes will be rendered here -->
     <loading-component v-show="isLoading"></loading-component>
     <router-view class="basic" v-show="!isLoading"/>
-    <div>easyped &copy; {{ new Date().getFullYear() }}</div>
-    <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.easyped.eu&width=184&layout=button_count&action=recommend&size=large&show_faces=true&share=true&height=46&appId=1477670789018415" width="184" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
+    <easy-footer />
   </div>
 </template>
 
