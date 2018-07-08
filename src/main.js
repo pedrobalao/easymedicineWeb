@@ -26,6 +26,9 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import HelloCarousel from './components/HelloCarousel'
 import EasyFooter from './components/EasyFooter'
+import 'vue-awesome/icons/flag'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.use(VueAnalytics, {
   id: process.env.GOOGLE_ANALYTICS_ID,
@@ -56,6 +59,7 @@ Vue.component('loading-component', LoadingComponent)
 Vue.component('cookie-law', CookieLaw)
 Vue.component('swiper', VueAwesomeSwiper)
 Vue.component('easy-footer', EasyFooter)
+Vue.component('icon', Icon)
 Vue.use(VueAwesomeSwiper)
 
 global.api = require('@/api/api')

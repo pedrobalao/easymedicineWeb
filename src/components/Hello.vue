@@ -11,7 +11,36 @@
           </div>
         </b-form>
       </div>
-    </div>
+  </div>
+  <hello-carousel />
+  <div>
+    <b-card-group deck class="cardgroup">
+        <b-card border-variant="light">
+          <div class="row h-100 justify-content-center align-items-center">
+            <icon name="database" scale="5" class="text-success"></icon>
+            <p class="card-text text-center text-muted pt-4">
+              Base de dados feita por médicos para médicos. Atualizada regularmente e com centenas de médicos a comprovarem a sua qualidade diariamente. 
+            </p>
+           </div>
+        </b-card>
+        <b-card  border-variant="light">
+          <div class="row h-100 justify-content-center align-items-center">
+            <icon name="calculator" scale="5"  class="text-success"></icon>
+            <p class="card-text text-center text-muted pt-4">
+              Calculos autmáticos de doses dos medicamentos mais usados apenas à distância de um click. Evite os erros e poupe tempo.
+            </p>
+          </div>
+        </b-card>
+        <b-card  border-variant="light">
+          <div class="row h-100 justify-content-center align-items-center">
+            <icon name="chart-line" scale="5"  class="text-success"></icon>
+            <p class="card-text text-center text-muted pt-4">
+              Evite os calculos médicos complexos repetitivos, easyPed disponibiliza-lhe um conjunto de calculadoras que lhe permitiram um maior foco no doente e menos em tarefas acessórias. 
+            </p>
+          </div>
+        </b-card>
+    </b-card-group>
+  </div>
 
 <!--
   <b-container>
@@ -23,7 +52,8 @@
     </b-row>
   </b-container>
 -->
-  <hello-carousel />
+  
+  
 </div>  
 </template>
 
@@ -88,6 +118,10 @@ a {
 .searchbutton{
   align-items: center;
   padding-top: 5px;
+}
+
+.cardgroup {
+  padding: 20px;
 }
 
 img {

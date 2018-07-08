@@ -63,8 +63,8 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© {{ new Date().getFullYear() }}
-      <a href="https://www.easyped.eu"> easyPed</a>
+    <div class="footer-copyright text-center py-3">
+      Made with <span style="color: #e25555;">&hearts;</span> in Porto | © {{ new Date().getFullYear() }} easyPed
     </div>
     <!-- Copyright -->
 
