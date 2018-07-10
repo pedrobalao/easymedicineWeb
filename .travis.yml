@@ -19,3 +19,4 @@ deploy:
   site: easypedweb
   skip_cleanup: true
   verbose: true
+  on: production
