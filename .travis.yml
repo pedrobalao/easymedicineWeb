@@ -17,5 +17,5 @@ before_deploy:
 deploy:
   provider: azure_web_apps
   site: easypedweb
-  skip_cleanup: true
+  skip_cleanup: false
   verbose: true
