@@ -4,7 +4,7 @@
       <div class="searchdiv">
         <b-form @submit.prevent="onSubmit"> 
           <div>
-            <b-form-input variant="success" type="text" class="searchinput" placeholder="Principio Ativo, Indicação..." v-model="presearchstr" @keyup.enter.native="search"/>
+            <b-form-input variant="success" type="text" class="searchinput" placeholder="Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
           </div>
           <div class="searchbutton">
             <b-button variant="success"  v-on:click="search">Pesquisar</b-button>

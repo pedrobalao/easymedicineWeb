@@ -3,14 +3,7 @@ FROM node:carbon
 
 # env variables
 ENV PORT=80
-ENV FIREBASE_API_KEY=TBD
-ENV FIREBASE_AUTH_DOMAIN=TBD
-ENV FIREBASE_DATABASE_URL=TBD
-ENV FIREBASE_PROJECT_ID=TBD
-ENV FIREBASE_STORAGE_BUCKET=TBD
-ENV FIREBASE_MSG_SENDING_ID=TBD
-ENV API_BASE_URL=TBD
-ENV GOOGLE_ANALYTICS_ID=TBD
+
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:

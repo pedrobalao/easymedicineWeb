@@ -11,8 +11,6 @@ import Variable from './components/Variable'
 import Spinner from './components/Spinner'
 import Result from './components/Result'
 import DrugList from './components/DrugList'
-import LoadingComponent from './components/Loading'
-import PulseLoader from 'vue-spinner/src/PulseLoader'
 import auth from '@/auth/auth'
 import store from '@/store'
 import axios from 'axios'
@@ -29,6 +27,7 @@ import EasyFooter from './components/EasyFooter'
 import 'vue-awesome/icons/flag'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
+import Loading from 'vue-full-loading'
 
 Vue.use(VueAnalytics, {
   id: process.env.GOOGLE_ANALYTICS_ID,
@@ -53,13 +52,12 @@ Vue.component('variable', Variable)
 Vue.component('spinner', Spinner)
 Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
-Vue.component('pulse-loader', PulseLoader)
 Vue.component('hello-carousel', HelloCarousel)
-Vue.component('loading-component', LoadingComponent)
 Vue.component('cookie-law', CookieLaw)
 Vue.component('swiper', VueAwesomeSwiper)
 Vue.component('easy-footer', EasyFooter)
 Vue.component('icon', Icon)
+Vue.component('loading', Loading)
 Vue.use(VueAwesomeSwiper)
 
 global.api = require('@/api/api')

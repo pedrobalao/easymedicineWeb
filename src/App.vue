@@ -31,7 +31,9 @@
       </b-collapse>
     </b-navbar>
     <!-- routes will be rendered here -->
-    <loading-component v-show="isLoading"></loading-component>
+
+    <loading :show="isLoading"></loading>
+
     <router-view class="basic" v-show="!isLoading"/>
     <easy-footer />
   </div>
