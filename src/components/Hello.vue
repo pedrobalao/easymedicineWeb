@@ -35,7 +35,7 @@
           <div class="row h-100 justify-content-center align-items-center">
             <icon name="chart-line" scale="5"  class="text-success"></icon>
             <p class="card-text text-center text-muted pt-4">
-              Evite os calculos médicos complexos repetitivos, easyPed disponibiliza-lhe um conjunto de calculadoras que lhe permitiram um maior foco no doente e menos em tarefas acessórias. 
+              Evite os calculos médicos complexos e repetitivos, a easyPed disponibiliza-lhe um conjunto de calculadoras que lhe permitem um maior foco no doente e menos em tarefas acessórias. 
             </p>
           </div>
         </b-card>
