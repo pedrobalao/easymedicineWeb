@@ -1,9 +1,52 @@
 <template>
 <div class="hellocarousel">
       <swiper :options="swiperOption" class="swiper-box">
-        <swiper-slide class="slide-1"></swiper-slide>
-        <swiper-slide class="slide-2"></swiper-slide>
-        <swiper-slide class="slide-3"></swiper-slide>
+        <swiper-slide class="slide-1">
+          <b-container fluid class="p-4">
+            <b-row>
+              <b-col>
+                <span class="carousseltitle">
+                  A FERRAMENTA QUE O TORNA
+                  <br/>
+                  MAIS PRODUTIVO
+                </span> 
+              </b-col>
+              <b-col>
+                <b-img  fluid height="50%" :src="paracetamolimg" alt="Thumbnail" />
+              </b-col>
+            </b-row>
+          </b-container>
+        </swiper-slide>
+        <swiper-slide class="slide-2">
+          <b-container fluid class="p-4">
+            <b-row>
+              <b-col>
+                <span class="carousseltitle">
+                  MAIS DE 1200 UTILIZADORES MENSAIS
+                  <br/>
+                  USAM EASYPED
+                </span> 
+              </b-col>
+              <b-col>
+                <b-img  fluid height="50%" :src="indicemassacorporal" alt="Thumbnail" />
+              </b-col>
+            </b-row>
+          </b-container>
+        </swiper-slide>
+        <swiper-slide class="slide-3">
+          <b-container fluid class="p-4">
+            <b-row>
+              <b-col>
+                <span class="carousseltitle">
+                  DISPONÍVEL PARA <b-link class="text-success" href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8">IOS</b-link> E <b-link class="text-success" href="https://play.google.com/store/apps/details?id=com.easymedicine.easymedicine&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">ANDROID</b-link>  
+                </span> 
+              </b-col>
+              <b-col>
+                <b-img fluid height="50%" :src="calculardosesimg"  blank-color="#bbb" alt="Thumbnail" />
+              </b-col>
+            </b-row>
+          </b-container>
+        </swiper-slide>
         <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
         <!--<div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
         <div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
@@ -35,11 +78,26 @@
           }
         }
       }
+    },
+    computed: {
+      paracetamolimg () {
+        return require('../assets/ParacetamolDetail.png')
+      },
+      calculardosesimg () {
+        return require('../assets/CalcularDoses.png')
+      },
+      indicemassacorporal () {
+        return require('../assets/IndiceMassaCorporal.png')
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
   .swiper-box {
     width: 100%;
     height: 500px;
@@ -49,17 +107,48 @@
   .swiper-slide {
     background-position: center;
     background-size: cover;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 40px 60px;
+    background-color: transparent!important;
+    justify-content: space-around!important;
 
     &.slide-1 {
-      background-image:url('https://images.unsplash.com/photo-1519781542704-957ff19eff00?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c351475860e8248dcd543ebbba1aa24f&auto=format&fit=crop&w=846&q=80')
+      background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.unsplash.com/photo-1519781542704-957ff19eff00?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c351475860e8248dcd543ebbba1aa24f&auto=format&fit=crop&w=846&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      
+      
     }
 
     &.slide-2 {
-      background-image:url('https://images.unsplash.com/photo-1522308300961-fdb949cac8aa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=850933625affc754732eff3b7faef33a&auto=format&fit=crop&w=750&q=80')
+      background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.unsplash.com/photo-1522308300961-fdb949cac8aa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=850933625affc754732eff3b7faef33a&auto=format&fit=crop&w=750&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+
     }
 
     &.slide-3 {
-      background-image:url('https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9da561905a3da8a8eb52a58208b4bfc0&auto=format&fit=crop&w=750&q=80')
+      background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.unsplash.com/photo-1517271023557-20d13b255594?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=54529f44821f5f5ef411bd156c0732da&auto=format&fit=crop&w=750&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+
     }
   }
+
+  
+
+  .carousseltitle {
+      font-size: 25px;
+      font-family: 'Open Sans', sans-serif;
+      position: absolute;
+      top: 50%;
+      color: #fff;
+  }
+  
+
 </style>

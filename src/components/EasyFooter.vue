@@ -49,7 +49,7 @@
                 <a href="http://facebook.com/easyped/">Facebook</a>
               </li>
               <li>
-                <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.easyped.eu&width=184&layout=button_count&action=recommend&size=large&show_faces=true&share=true&height=46&appId=1477670789018415" width="184" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
+                <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Feasyped&width=147&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="147" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
               </li>
             </ul>
 

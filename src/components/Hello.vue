@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="search">
+  <!--<div class="search">
       <div class="searchdiv">
         <b-form @submit.prevent="onSubmit"> 
           <div>
@@ -11,8 +11,18 @@
           </div>
         </b-form>
       </div>
-  </div>
+  </div>-->
   <hello-carousel />
+  <blockquote class="blockquote text-center pt-5">
+    <p class="mb-0">"Muito simples e prático, extremamente útil na prática diária!"</p>
+    <footer class="blockquote-footer">Dr. Andre Tome</footer>
+  </blockquote>
+
+  <blockquote class="blockquote text-center">
+    <p class="mb-0">"Adeus livrinho verde, olá easyPed"</p>
+    <footer class="blockquote-footer">Dra. Paula Matos</footer>
+  </blockquote>
+  
   <div>
     <b-card-group deck class="cardgroup">
         <b-card border-variant="light">
