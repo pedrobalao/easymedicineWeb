@@ -29,7 +29,7 @@
           <div class="row h-100 justify-content-center align-items-center">
             <icon name="database" scale="5" class="text-success"></icon>
             <p class="card-text text-center text-muted pt-4">
-              Base de dados feita por médicos para médicos. Atualizada regularmente e com centenas de médicos a comprovarem a sua qualidade diariamente. 
+              Base de dados de medicamentos feita por médicos para médicos. Atualizada regularmente e com centenas de médicos a comprovarem a sua qualidade diariamente. 
             </p>
            </div>
         </b-card>
@@ -37,7 +37,7 @@
           <div class="row h-100 justify-content-center align-items-center">
             <icon name="calculator" scale="5"  class="text-success"></icon>
             <p class="card-text text-center text-muted pt-4">
-              Calculos autmáticos de doses dos medicamentos mais usados apenas à distância de um click. Evite os erros e poupe tempo.
+              Calculos automáticos de doses dos medicamentos mais usados apenas à distância de um click. Evite os erros e poupe tempo.
             </p>
           </div>
         </b-card>
