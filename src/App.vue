@@ -11,6 +11,7 @@
           <b-nav-item to="/categories">Explorar</b-nav-item>
           <b-nav-item to="/doses">Doses</b-nav-item>
           <b-nav-item to="/medicalcalculations" >Cálculos</b-nav-item>
+          <b-nav-item to="/surgeryreferral" >Referenciação Cirúrgica</b-nav-item>
           <!--<b-nav-item to="/Favourites" v-show="isLogged">Favoritos</b-nav-item>-->
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
           <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>-->

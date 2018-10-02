@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     getData () {
+      console.log('API -> ' + process.env.API_BASE_URL)
       // debugger
       this.loading = true
       var catid = this.$route.params.catid

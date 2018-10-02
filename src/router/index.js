@@ -8,6 +8,7 @@ import SubCategory from '@/components/SubCategory'
 import DoseCalculation from '@/components/DoseCalculation'
 import MedicalCalculation from '@/components/MedicalCalculation'
 import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
+import SurgeryReferral from '@/components/SurgeryReferral'
 import Auth from '@/views/Auth'
 import auth from '@/auth/auth'
 
@@ -71,6 +72,12 @@ let routes = [
     path: '/medicalcalculations/:id',
     name: 'SpecificMedicalCalculation',
     component: SpecificMedicalCalculation
+    // meta: { requireAuth: true }
+  },
+  {
+    path: '/surgeryreferral',
+    name: 'SurgeryReferral',
+    component: SurgeryReferral
     // meta: { requireAuth: true }
   }
 ]
