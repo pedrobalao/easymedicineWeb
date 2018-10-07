@@ -5,7 +5,7 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '8.x'
-- script: 
+- script: cho The value passed in is $(variables.FIREBASE_API_KEY)
     env: 
       FIREBASE_API_KEY: '12345'
 
