@@ -31,7 +31,7 @@ steps:
   inputs:
     azureSubscription: 'Visual Studio Enterprise: BizSpark (51b0ae85-b013-43f7-b1ea-104c47d3805c)'
     appType: webAppLinux
-    WebAppName: 'easypedweb'
+    WebAppName: 'easymedweb'
     RuntimeStack: 'NODE|8.11'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
