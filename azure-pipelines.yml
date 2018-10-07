@@ -30,11 +30,7 @@ steps:
   displayName: 'Azure App Service Deploy: easymedweb'
   inputs:
     azureSubscription: 'Visual Studio Enterprise: BizSpark (51b0ae85-b013-43f7-b1ea-104c47d3805c)'
-    appType: webAppLinux
-    WebAppName: 'easymedweb'
-    RuntimeStack: 'NODE|8.11'
-    packageForLinux: '$(System.DefaultWorkingDirectory)'
-    
-
-
-
+    WebAppName: 'easypedweb'
+    Package: '$(System.DefaultWorkingDirectory)'
+    GenerateWebConfig: true
+    WebConfigParameters: '-Handler iisnode -NodeStartFile server.js -appType node'
