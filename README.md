@@ -1,4 +1,4 @@
-# easymedweb [![Build Status](https://travis-ci.org/pedrobalao/easymedicineWeb.svg?branch=master)](https://travis-ci.org/pedrobalao/easymedicineWeb)
+# easymedweb [![Build Status](https://dev.azure.com/pedrochavs/easypedweb/_apis/build/status/easypedweb-CI)](https://dev.azure.com/pedrochavs/easypedweb/_build/latest?definitionId=8)
 
 > De médico para médico
 
