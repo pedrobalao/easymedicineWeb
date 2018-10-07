@@ -17,8 +17,9 @@ steps:
 
 - task: AzureRmWebAppDeployment@3
   inputs:
-    azureSubscription: 'Visual Studio Enterprise: BizSpark'
+    azureSubscription: 'Visual Studio Enterprise: BizSpark (51b0ae85-b013-43f7-b1ea-104c47d3805c)'
     WebAppName: 'easypedweb'
     Package: '$(System.DefaultWorkingDirectory)'
     GenerateWebConfig: true
     WebConfigParameters: '-Handler iisnode -NodeStartFile server.js -appType node'
+
