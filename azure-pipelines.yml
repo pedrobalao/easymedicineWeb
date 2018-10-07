@@ -9,6 +9,13 @@ steps:
     echo $(FIREBASE_API_KEY)
 - script: |
     echo 'FIREBASE_API_KEY=$(FIREBASE_API_KEY)' > .env.prod
+    echo 'FIREBASE_AUTH_DOMAIN=$(FIREBASE_AUTH_DOMAIN)' >> .env.prod
+    echo 'FIREBASE_DATABASE_URL=$(FIREBASE_DATABASE_URL)' >> .env.prod
+    echo 'FIREBASE_PROJECT_ID=$(FIREBASE_PROJECT_ID)' >> .env.prod
+    echo 'FIREBASE_STORAGE_BUCKET=$(FIREBASE_STORAGE_BUCKET)' >> .env.prod
+    echo 'FIREBASE_MSG_SENDING_ID=$(FIREBASE_MSG_SENDING_ID)' >> .env.prod
+    echo 'API_BASE_URL=$(API_BASE_URL)' >> .env.prod
+    echo 'GOOGLE_ANALYTICS_ID=$(GOOGLE_ANALYTICS_ID)' >> .env.prod
 
 - script: |
     npm install
