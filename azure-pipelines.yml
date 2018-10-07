@@ -7,7 +7,9 @@ steps:
     versionSpec: '8.x'
 - script: 
     echo $(FIREBASE_API_KEY)
-    
+- script: |
+    set FIREBASE_API_KEY=$(FIREBASE_API_KEY)
+
 - script: |
     npm install
     npm run build
