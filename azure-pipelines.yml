@@ -6,7 +6,8 @@ steps:
   inputs:
     versionSpec: '8.x'
 - script: 
-    env: FIREBASE_API_KEY: '12345'
+    env: 
+      FIREBASE_API_KEY: '12345'
 
 - script: |
     npm install
