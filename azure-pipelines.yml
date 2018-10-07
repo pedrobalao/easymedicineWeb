@@ -1,0 +1,26 @@
+# Build NodeJS Express app using Azure Pipelines
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript?view=vsts
+pool:
+  vmImage: 'Ubuntu 16.04'
+  
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  
+- script: |
+    npm install
+    npm run build
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+
+- task: AzureRmWebAppDeployment@3
+  inputs:
+    azureSubscription: '51b0ae85-b013-43f7-b1ea-104c47d3805c'
+    WebAppName: 'easypedweb'
+    Package: '$(System.DefaultWorkingDirectory)'
+    GenerateWebConfig: true
+    WebConfigParameters: '-Handler iisnode -NodeStartFile server.js -appType node'
