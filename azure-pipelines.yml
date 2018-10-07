@@ -33,7 +33,8 @@ steps:
     appType: webAppLinux
     WebAppName: 'easymedweb'
     RuntimeStack: 'NODE|8.11'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)'
+    
 
 
 
