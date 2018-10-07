@@ -33,6 +33,7 @@ steps:
     appType: webAppLinux
     WebAppName: 'easypedweb'
     RuntimeStack: 'NODE|8.11'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
 
