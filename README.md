@@ -1,4 +1,4 @@
-# easymedweb [![Build Status](https://dev.azure.com/pedrochavs/easypedweb/_apis/build/status/easypedweb-CI)](https://dev.azure.com/pedrochavs/easypedweb/_build/latest?definitionId=8)
+# easymedweb [![Build Status](https://dev.azure.com/pedrochavs/easypedweb/_apis/build/status/easypedweb-docker)](https://dev.azure.com/pedrochavs/easypedweb/_build/latest?definitionId=9)
 
 > De médico para médico
 
