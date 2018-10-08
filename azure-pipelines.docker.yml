@@ -1,6 +1,9 @@
 pool:
   vmImage: 'Ubuntu 16.04'
-  
+
+variables:
+  imageName: 'easypedweb:$(Build.BuildId)'
+
 steps:
 - task: NodeTool@0
   inputs:
