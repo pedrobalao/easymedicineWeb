@@ -18,8 +18,7 @@ RUN npm run build
 RUN rm -rf ./build
 RUN rm -rf ./test
 RUN rm -rf ./src
-RUN rm .env.*
-RUN rm envs.*
+
 
 
 EXPOSE 80
