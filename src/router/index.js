@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import About from '@/components/About'
 import Search from '@/components/Search'
 import Drug from '@/components/Drug'
 import Category from '@/components/Category'
@@ -9,6 +9,7 @@ import DoseCalculation from '@/components/DoseCalculation'
 import MedicalCalculation from '@/components/MedicalCalculation'
 import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
 import SurgeryReferral from '@/components/SurgeryReferral'
+import Main from '@/components/Main'
 import Auth from '@/views/Auth'
 import auth from '@/auth/auth'
 
@@ -21,9 +22,9 @@ let routes = [
     meta: { guestOnly: true }
   },
   {
-    path: '/',
-    name: 'dashboard',
-    component: Hello// ,
+    path: '/about',
+    name: 'about',
+    component: About// ,
     // meta: { requireAuth: true }
   },
   {
@@ -78,6 +79,12 @@ let routes = [
     path: '/surgeryreferral',
     name: 'SurgeryReferral',
     component: SurgeryReferral
+    // meta: { requireAuth: true }
+  },
+  {
+    path: '/',
+    name: 'Main',
+    component: Main
     // meta: { requireAuth: true }
   }
 ]

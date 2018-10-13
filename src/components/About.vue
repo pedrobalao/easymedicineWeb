@@ -1,17 +1,5 @@
 <template>
 <div>
-  <!--<div class="search">
-      <div class="searchdiv">
-        <b-form @submit.prevent="onSubmit"> 
-          <div>
-            <b-form-input variant="success" type="text" class="searchinput" placeholder="Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/>
-          </div>
-          <div class="searchbutton">
-            <b-button variant="success"  v-on:click="search">Pesquisar</b-button>
-          </div>
-        </b-form>
-      </div>
-  </div>-->
   <hello-carousel />
   <blockquote class="blockquote text-center pt-5">
     <p class="mb-0">"Muito simples e prático, extremamente útil na prática diária!"</p>
@@ -51,19 +39,15 @@
         </b-card>
     </b-card-group>
   </div>
-
-<!--
-  <b-container>
-    <b-row>
-        <b-col cols="1"></b-col>
-        <b-col cols="7"><b-form-input type="text" placeholder="Medicamento, Principio Ativo, Indicação..." v-model="searchstr" @keyup.enter.native="search"/></b-col>
-        <b-col cols="3"><b-button  variant="success"  v-on:click="search">Pesquisar</b-button></b-col>
-        <b-col cols="1"></b-col>
-    </b-row>
-  </b-container>
--->
-  
-  
+  <div>
+   <b-card-group columns class="mb-3" >
+        <b-card :title="author.name"  v-for="author in authors" :key="author.name">
+            <p class="card-text">
+                {{author.speciality}}
+            </p>
+        </b-card>
+    </b-card-group>
+  </div>
 </div>  
 </template>
 
@@ -79,14 +63,25 @@ export default {
   },
   data () {
     return {
-      searchstr: ''
+      authors: []
     }
   },
+  created () {
+    this.getAuthors()
+  },
   methods: {
-    search: function (event) {
-      if (this.searchstr) {
-        this.$router.push({ name: 'Search', query: { searchstr: this.searchstr } })
-      }
+    getAuthors () {
+      this.authors = [
+        {name: 'Dr. Ruben Rocha', speciality: 'Pediatra'},
+        {name: 'Dra. Ana Reis Melo', speciality: 'Interna de Pediatria'},
+        {name: 'Dra. Claudia Teles Silva', speciality: 'Interna de Pediatria'},
+        {name: 'Dr. João Sarmento', speciality: 'Interno de Cardiologia Pediátrica'},
+        {name: 'Dra. Mariana Adrião', speciality: 'Interna de Pediatria'},
+        {name: 'Dra. Marta Rosário ', speciality: 'Interna de Pediatria'},
+        {name: 'Dr. Ruben Pinheiro', speciality: 'Cirurgião Pediátrico'},
+        {name: 'Dra. Sofia Ferreira', speciality: 'Interna de Pediatria'},
+        {name: 'Dra. Sónia Silva', speciality: 'Interna de Pediatria'}
+      ]
     }
   }
 }

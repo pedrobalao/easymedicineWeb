@@ -4,52 +4,40 @@
         <swiper-slide class="slide-1">
           <b-container fluid class="p-4">
             <b-row>
-              <b-col>
-                <span class="carousseltitle">
-                  A FERRAMENTA QUE O TORNA
-                  <br/>
-                  MAIS PRODUTIVO
-                </span> 
-              </b-col>
-              <b-col>
-                <b-img  fluid height="50%" :src="paracetamolimg" alt="Thumbnail" />
-              </b-col>
+                <b-col><span class="carousseltitle">
+                    A FERRAMENTA QUE O TORNA
+                    <br/>
+                    MAIS PRODUTIVO
+              </span></b-col>
+                <b-col><b-img :src="paracetamolimg" fluid right alt="image" /></b-col>
             </b-row>
           </b-container>
         </swiper-slide>
         <swiper-slide class="slide-2">
           <b-container fluid class="p-4">
             <b-row>
-              <b-col>
-                <span class="carousseltitle">
+                <b-col>
+            <span class="carousseltitle">
                   MAIS DE 1200 UTILIZADORES MENSAIS
                   <br/>
                   USAM EASYPED
-                </span> 
-              </b-col>
-              <b-col>
-                <b-img  fluid height="50%" :src="indicemassacorporal" alt="Thumbnail" />
-              </b-col>
+                </span> </b-col>
+                <b-col><b-img :src="indicemassacorporal" fluid right alt="image" /></b-col>
             </b-row>
           </b-container>
         </swiper-slide>
         <swiper-slide class="slide-3">
           <b-container fluid class="p-4">
             <b-row>
-              <b-col>
-                <span class="carousseltitle">
+                <b-col>
+            <span class="carousseltitle">
                   DISPONÍVEL PARA <b-link class="text-success" href="https://itunes.apple.com/pt/app/easyped/id1158594702?mt=8">IOS</b-link> E <b-link class="text-success" href="https://play.google.com/store/apps/details?id=com.easymedicine.easymedicine&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">ANDROID</b-link>  
-                </span> 
-              </b-col>
-              <b-col>
-                <b-img fluid height="50%" :src="calculardosesimg"  blank-color="#bbb" alt="Thumbnail" />
-              </b-col>
+                </span></b-col>
+                <b-col><b-img :src="calculardosesimg" fluid right alt="image" /></b-col>
             </b-row>
           </b-container>
         </swiper-slide>
         <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
-        <!--<div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
       </swiper>
 </div>
 </template>
@@ -81,13 +69,13 @@
     },
     computed: {
       paracetamolimg () {
-        return require('../assets/ParacetamolDetail.png')
+        return require('../assets/ParacetamolDetail_s.png')
       },
       calculardosesimg () {
-        return require('../assets/CalcularDoses.png')
+        return require('../assets/CalcularDoses_s.png')
       },
       indicemassacorporal () {
-        return require('../assets/IndiceMassaCorporal.png')
+        return require('../assets/IndiceMassaCorporal_s.png')
       }
     }
   }
@@ -100,7 +88,7 @@
 
   .swiper-box {
     width: 100%;
-    height: 500px;
+    height: 100%;
     margin: 0 auto;
   }
 
@@ -143,10 +131,9 @@
   
 
   .carousseltitle {
-      font-size: 25px;
+      font-size: 4vw;
       font-family: 'Open Sans', sans-serif;
       position: absolute;
-      top: 50%;
       color: #fff;
   }
   
