@@ -6,10 +6,10 @@
             <div class="logo">easyPed</div>
           </b-row>
           <b-row class="my-1" >
-            <b-col sm="10"><b-form-input 
+            <b-col sm="10" class="paddingtop"><b-form-input 
                     type="text"
                     placeholder="" v-model="searchstr" @keyup.enter.native="search" ></b-form-input></b-col>
-            <b-col sm="2"><b-button variant="success" v-on:click="search">Pesquisar</b-button></b-col>
+            <b-col sm="1" class="paddingtop"><b-button variant="success" v-on:click="search">Pesquisar</b-button></b-col>
           </b-row>
         </b-container>
       </div> 
@@ -69,8 +69,13 @@ export default {
   justify-content: center;
   margin: auto auto;
   margin-top: 15%;
-  width: 80%;
+  width: 100%;
   }
+
+.paddingtop
+{
+  padding-top: 10px;
+}
 
 .logo {
   text-align: center;
