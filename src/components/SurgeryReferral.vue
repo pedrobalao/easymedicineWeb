@@ -1,28 +1,24 @@
 <template>
-    <div>
-  <!--<b-collapse v-for="item in items" :key="item.Scope" :id="item.Scope" class="mt-2">
-    <b-card>
-      <p class="card-text">{item.Scope}</p>
-      <b-btn v-b-toggle.collapse1_inner size="sm">Toggle Inner Collapse</b-btn>
-      <b-collapse id=collapse1_inner class="mt-2">
-        <b-card>{item.Scope}</b-card>
-      </b-collapse>
-    </b-card>
-  </b-collapse>-->
-        <b-list-group>
-            <b-list-group-item v-for="item in items" :key="item.Scope"  v-b-toggle="item.Scope" action>
-                <p class="card-text">{{item.Scope}}</p>
-                <b-collapse :id="item.Scope" class="mt-2">
-                    <b-card>
-                        <p class="text-primary">Referenciação</p>
-                        <p class="text-secondary" v-for="itemR in item.Referral" :key="itemR" >{{ itemR }}</p>
-                        <p class="text-primary" v-if="item.Observations.length > 0" >Observações</p>
-                        <p class="text-secondary" v-for="itemO in item.Observations" :key="itemO" >{{ itemO }}</p>
-                    </b-card>
-                </b-collapse>
-            </b-list-group-item>
-        </b-list-group>
-    </div>
+  <div>
+    <blockquote class="blockquote text-center">
+      <p class="mb-0">Em memória do Prof. Dr. Tiago Henriques Coelho</p>
+      <footer class="blockquote-footer">1977-2017</footer>
+    </blockquote>
+    <b-list-group>
+        <b-list-group-item v-for="item in items" :key="item.Scope"  v-b-toggle="item.Scope" action>
+            <p class="card-text">{{item.Scope}}</p>
+            <b-collapse :id="item.Scope" class="mt-2">
+                <b-card>
+                    <p class="text-primary">Referenciação</p>
+                    <p class="text-secondary" v-for="itemR in item.Referral" :key="itemR" >{{ itemR }}</p>
+                    <p class="text-primary" v-if="item.Observations.length > 0" >Observações</p>
+                    <p class="text-secondary" v-for="itemO in item.Observations" :key="itemO" >{{ itemO }}</p>
+                </b-card>
+            </b-collapse>
+        </b-list-group-item>
+    </b-list-group>
+    <p class="mb-0 warning text-secondary">Adaptado das normas DGS, in "Programa nacional de saúde infantil e juvenil" de 2012</p>
+  </div>
 </template>
 
 <script>
@@ -74,4 +70,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.warning {
+  padding-top: 20px;
+}
 </style>
