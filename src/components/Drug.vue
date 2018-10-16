@@ -13,7 +13,8 @@
                 <!--<b-button @click="onCalc" variant="primary" class="btn">Calcular</b-button>-->
               </b-form>
               <b-card-group columns v-if="hasResults" class="resultgroup">
-                <app-result v-if="hasResults"  v-for="res in results" :key="res.resultdescription" :description="res.resultdescription" :value="res.result" />
+                <app-result v-if="hasResults"  v-for="res in results" :key="res.resultdescription" :description="res.description" :value="res.result" 
+                :observation="res.resultdescription"/>
               </b-card-group>
               <!--<b-table striped :items="results" :hover="false" :fields="fieldsres" v-if="hasResults" />-->
             </div>
@@ -150,6 +151,7 @@ export default {
             that.results = []
             response.data.forEach(item => {
               that.results.push({
+                description: item.description,
                 resultdescription: item.resultdescription,
                 result: item.result + ' ' + item.resultunit
               })
