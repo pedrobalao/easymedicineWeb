@@ -28,6 +28,8 @@ import 'vue-awesome/icons/flag'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import Loading from 'vue-full-loading'
+import Datepicker from 'vuejs-datepicker'
+import { Laue } from 'laue'
 
 Vue.use(VueAnalytics, {
   id: process.env.GOOGLE_ANALYTICS_ID,
@@ -58,6 +60,9 @@ Vue.component('swiper', VueAwesomeSwiper)
 Vue.component('easy-footer', EasyFooter)
 Vue.component('icon', Icon)
 Vue.component('loading', Loading)
+Vue.component('vuejs-datepicker', Datepicker)
+
+Vue.use(Laue)
 Vue.use(VueAwesomeSwiper)
 
 global.api = require('@/api/api')

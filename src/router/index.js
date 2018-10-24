@@ -9,6 +9,7 @@ import DoseCalculation from '@/components/DoseCalculation'
 import MedicalCalculation from '@/components/MedicalCalculation'
 import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
 import SurgeryReferral from '@/components/SurgeryReferral'
+import Percentiles from '@/components/Percentiles'
 import Main from '@/components/Main'
 import Auth from '@/views/Auth'
 import auth from '@/auth/auth'
@@ -79,6 +80,12 @@ let routes = [
     path: '/surgeryreferral',
     name: 'SurgeryReferral',
     component: SurgeryReferral
+    // meta: { requireAuth: true }
+  },
+  {
+    path: '/percentiles',
+    name: 'Percentiles',
+    component: Percentiles
     // meta: { requireAuth: true }
   },
   {

@@ -17,10 +17,6 @@ export default {
   props: ['description', 'unit', 'value', 'observation'],
   data () {
     return {
-      description: this.description,
-      unit: this.unit,
-      value: this.value,
-      observation: this.observation
     }
   }
 }

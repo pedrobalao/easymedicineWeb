@@ -1,7 +1,7 @@
 <template>
     <div class="druglist">
         <template>
-          <b-table striped :items="drugs" :fields="fields" :hover="hover" @row-clicked="rowClicked"></b-table>
+          <b-table  :items="drugs" :fields="fields" hover @row-clicked="rowClicked"></b-table>
         </template>
     </div>
 </template>
