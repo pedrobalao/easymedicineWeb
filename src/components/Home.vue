@@ -20,7 +20,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'main',
+  name: 'home',
   computed: {
     ...mapGetters({
       user: 'user'

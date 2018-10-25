@@ -10,17 +10,17 @@ import MedicalCalculation from '@/components/MedicalCalculation'
 import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
 import SurgeryReferral from '@/components/SurgeryReferral'
 import Percentiles from '@/components/Percentiles'
-import Main from '@/components/Main'
-import Auth from '@/views/Auth'
-import auth from '@/auth/auth'
+import Home from '@/components/Home'
+// import Auth from '@/views/Auth'
+// import auth from '@/auth/auth'
 
 Vue.use(Router)
 let routes = [
   {
-    path: '/auth',
-    name: 'auth',
-    component: Auth,
-    meta: { guestOnly: true }
+    path: '/',
+    name: 'Home',
+    component: Home
+    // meta: { requireAuth: true }
   },
   {
     path: '/about',
@@ -87,23 +87,23 @@ let routes = [
     name: 'Percentiles',
     component: Percentiles
     // meta: { requireAuth: true }
-  },
-  {
-    path: '/',
-    name: 'Main',
-    component: Main
-    // meta: { requireAuth: true }
   }
 ]
 
 const router = new Router({
-  mode: 'history',
+  // mode: 'history',
   routes
 })
 
-export default router
-
 router.beforeEach((to, from, next) => {
+  console.log(from)
+  console.log(to)
+  console.log(next)
+  next()
+})
+
+export default router
+/* router.beforeEach((to, from, next) => {
   let isLoggedIn = auth.isLoggedIn()
   let requireAuth = to.matched.some(record => record.meta.requireAuth)
   let guestOnly = to.matched.some(record => record.meta.guestOnly)
@@ -111,4 +111,4 @@ router.beforeEach((to, from, next) => {
   if (requireAuth && !isLoggedIn) next('auth')
   else if (guestOnly && isLoggedIn) next('/')
   else next()
-})
+}) */

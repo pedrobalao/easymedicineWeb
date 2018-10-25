@@ -16,12 +16,12 @@
                 </div>
                 <div class="variable">
                     <b-input-group size="sm" prepend="Peso" append="kg" >
-                        <b-form-input type="number" v-model="weightValue" v-on:change="valueChanged('weight')" />
+                        <b-form-input type="number" v-model="weightValue" v-on:input="valueChanged('weight')" />
                     </b-input-group>
                 </div>
                 <div class="variable">
                     <b-input-group size="sm" prepend="Altura" append="cm" >
-                        <b-form-input type="number" v-model="heightValue" v-on:change="valueChanged('height')" />
+                        <b-form-input type="number" v-model="heightValue" v-on:input="valueChanged('height')" />
                     </b-input-group>
                 </div>
             </b-form-group>
@@ -44,6 +44,7 @@
 
 <script>
 import moment from 'moment'
+import axios from 'axios'
 
 export default {
   name: 'drug',
@@ -130,11 +131,11 @@ export default {
       let promises = []
       if (calcWeight) {
         console.log('Calc weight')
-        promises.push(global.http.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.weightValue))
+        promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.weightValue))
       }
       if (calcHeight) {
         console.log('Calc Height')
-        promises.push(global.http.get(process.env.API_BASE_URL + '/height/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.heightValue))
+        promises.push(axios.get(process.env.API_BASE_URL + '/height/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.heightValue))
       }
       if (promises.length === 0) {
         return

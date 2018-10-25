@@ -3,7 +3,6 @@
     <cookie-law theme="blood-orange--rounded" message="O nosso website armazena cookies no seu equipamento que são utilizados para assegurar funcionalidades que lhe permitem uma melhor experiência de navegação e utilização. Ao prosseguir com a navegação está a consentir a sua utilização." buttonText="OK!"></cookie-law>
     <b-navbar toggleable="md" type="dark" variant="primary" :sticky="true">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-badge variant="danger">beta</b-badge>
       <b-navbar-brand to="/about">{{brand}}</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
@@ -12,7 +11,7 @@
           <b-nav-item to="/doses">Doses</b-nav-item>
           <b-nav-item to="/medicalcalculations" >Cálculos</b-nav-item>
           <b-nav-item to="/surgeryreferral" >Referenciação Cirúrgica</b-nav-item>
-          <b-nav-item to="/percentiles" >Percentis</b-nav-item>
+          <b-nav-item to="/percentiles" ><b-badge variant="success">new</b-badge>Percentis</b-nav-item>
           <b-nav-item to="/about">Sobre</b-nav-item>
           <!--<b-nav-item to="/Favourites" v-show="isLogged">Favoritos</b-nav-item>-->
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
