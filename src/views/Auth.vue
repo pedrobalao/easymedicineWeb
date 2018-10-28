@@ -1,4 +1,4 @@
-
+<!--
 <template>
   <div>
     <h1>Sign in</h1>
@@ -19,4 +19,4 @@
 
 <style>
   @import "../../node_modules/firebaseui/dist/firebaseui.css";
-</style>
+</style> -->

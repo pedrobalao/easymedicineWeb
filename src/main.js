@@ -11,7 +11,7 @@ import Variable from './components/Variable'
 import Spinner from './components/Spinner'
 import Result from './components/Result'
 import DrugList from './components/DrugList'
-import auth from '@/auth/auth'
+// import auth from '@/auth/auth'
 import store from '@/store'
 import axios from 'axios'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
@@ -70,10 +70,18 @@ global.http = require('@/api/http')
 
 if (localStorage.getItem('token')) axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
 
-auth.initFirebase((user) => {
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  store,
+  router,
+  template: '<App/>',
+  components: { App }
+})
+
+/* auth.initFirebase((user) => {
   if (user) auth.updateLoginStorage(user)
 
-  /* eslint-disable no-new */
   let app
   if (!app) {
     app = new Vue({
@@ -89,4 +97,4 @@ auth.initFirebase((user) => {
 
     auth.setCurrentUser(user, app)
   }
-})
+}) */

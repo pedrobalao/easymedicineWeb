@@ -1,9 +1,9 @@
-import auth from '@/auth/auth'
+// import auth from '@/auth/auth'
 import axios from 'axios'
 
 const state = {
   user: null,
-  isLoggedIn: auth.isLoggedIn()
+  isLoggedIn: false // auth.isLoggedIn()
 }
 
 const getters = {

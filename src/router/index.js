@@ -11,6 +11,8 @@ import SpecificMedicalCalculation from '@/components/SpecificMedicalCalculation'
 import SurgeryReferral from '@/components/SurgeryReferral'
 import Percentiles from '@/components/Percentiles'
 import Home from '@/components/Home'
+import Error from '@/components/Error'
+
 // import Auth from '@/views/Auth'
 // import auth from '@/auth/auth'
 
@@ -87,7 +89,21 @@ let routes = [
     name: 'Percentiles',
     component: Percentiles
     // meta: { requireAuth: true }
+  },
+  {
+    path: '/error',
+    name: 'Error',
+    component: Error
+    // meta: { requireAuth: true }
+  },
+  {
+    path: '*',
+    name: 'Error',
+    component: Error,
+    props: { error: '404' }
+    // meta: { requireAuth: true }
   }
+
 ]
 
 const router = new Router({
@@ -95,12 +111,13 @@ const router = new Router({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   console.log(from)
   console.log(to)
   console.log(next)
   next()
 })
+*/
 
 export default router
 /* router.beforeEach((to, from, next) => {

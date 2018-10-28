@@ -1,4 +1,4 @@
-import firebaseui from 'firebaseui'
+/* import firebaseui from 'firebaseui'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
@@ -61,4 +61,4 @@ const auth = {
   }
 }
 
-export default auth
+export default auth */

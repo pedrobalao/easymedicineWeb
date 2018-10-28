@@ -11,7 +11,7 @@
           <b-nav-item to="/doses">Doses</b-nav-item>
           <b-nav-item to="/medicalcalculations" >Cálculos</b-nav-item>
           <b-nav-item to="/surgeryreferral" >Referenciação Cirúrgica</b-nav-item>
-          <b-nav-item to="/percentiles" ><b-badge variant="success">new</b-badge>Percentis</b-nav-item>
+          <b-nav-item to="/percentiles" ><b-badge variant="danger">beta</b-badge>Percentis</b-nav-item>
           <b-nav-item to="/about">Sobre</b-nav-item>
           <!--<b-nav-item to="/Favourites" v-show="isLogged">Favoritos</b-nav-item>-->
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
@@ -19,12 +19,12 @@
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" >
           
-          <b-nav-item-dropdown right v-if="user != null">
+          <!-- <b-nav-item-dropdown right v-if="user != null">
             <template slot="button-content">
               <b-img :src="user.photoURL" style="max-height: 30px;" fluid rounded="circle" />
             </template>
             <b-dropdown-item v-if="isLogged" @click="logout" class="text-danger"><font-awesome-icon icon="power-off" /> Logout</b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown> -->
           <!--<b-nav-item to="/auth" v-if="!isLogged">Login</b-nav-item>-->
         </b-navbar-nav>
       </b-collapse>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import auth from '@/auth/auth'
+// import auth from '@/auth/auth'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -53,20 +53,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
+    /*  ...mapGetters({
       isLogged: 'isLogged',
       user: 'user'
-    }),
+    }), */
     ...mapGetters('loading', {
       isLoading: 'isLoading'
     })
   },
   methods: {
-    logout: function () {
+    /* logout: function () {
       auth.logout(() => {
         location.reload()
       })
-    },
+    }, */
     search: function (event) {
       if (this.searchstr) {
         this.$router.push({ name: 'Search', query: { searchstr: this.searchstr } })

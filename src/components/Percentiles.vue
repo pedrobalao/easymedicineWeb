@@ -36,6 +36,7 @@
                 </la-cartesian>-->
                 <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight.percentile" />
             </b-card-group>
+            <p class="text-muted" size="sm" >Dados WHO Child Growth Standards</p>
         </b-form>
         
        
