@@ -6,7 +6,7 @@
             <b-form-group id="exampleGroup4">
                 <div class="variable">
                     <b-input-group size="sm" prepend="Género" >
-                        <b-form-select v-model="genderSelected" id="gender" required v-on:change="valueChanged('gender')" :options="genderOptions" size="sm"  />
+                        <b-form-select v-model="genderSelected" id="gender" required v-on:input="valueChanged('gender')" :options="genderOptions" size="sm"  />
                     </b-input-group>
                 </div>
                 <div class="variable">
@@ -27,14 +27,8 @@
             </b-form-group>
             <p class="text-danger" size="sm" v-if="errorvars">{{errorvars}}</p>
             <b-card-group columns class="resultgroup">
-                <app-result v-if="resultWeight != null" unit="" description="Percentil Peso" observation="" :value="resultWeight.percentile" />
-                 <!--<la-cartesian v-if="resultWeight != null" animated autoresize :bound="[0]" :data="weightValues">
-                    <la-bar dot curve prop="weight"></la-bar>
-                    <la-x-axis prop="percentil"></la-x-axis>
-                    <la-y-axis prop="weight"></la-y-axis>
-                    <la-tooltip></la-tooltip>
-                </la-cartesian>-->
-                <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight.percentile" />
+                <app-result v-if="resultWeight != null" unit="" description="Percentil Peso" observation="" :value="resultWeight===null ? 'A Calcular...' : String(resultWeight.percentile)" />
+                <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight===null ? 'A Calcular...' : String(resultHeight.percentile)" />
             </b-card-group>
             <p class="text-muted" size="sm" >Dados WHO Child Growth Standards</p>
         </b-form>
@@ -48,16 +42,18 @@ import moment from 'moment'
 import axios from 'axios'
 
 export default {
-  name: 'drug',
+  name: 'percentil',
   data () {
-    console.log('data')
+    // console.log('data')
     let minDate = moment().subtract(1855, 'days').toDate()
     return {
       errorvars: '',
       previousBirthdate: null,
       birthdateValue: null,
-      weightValue: 0,
-      heightValue: 0,
+      weightValue: null,
+      previosWeight: null,
+      heightValue: null,
+      previousHeight: null,
       genderSelected: 'male',
       genderOptions: [
         { value: 'male', text: 'Masculino' },
@@ -76,7 +72,7 @@ export default {
   computed: {
   },
   created () {
-    console.log('created')
+    // console.log('created')
   },
   methods: {
     valueChanged (id) {
@@ -89,14 +85,27 @@ export default {
         } else {
           this.previousBirthdate = this.birthdateValue
         }
+      } else if (id === 'height') {
+        if (this.previousHeight === this.heightValue) {
+          return
+        } else {
+          this.previousHeight = this.heightValue
+        }
+      } else if (id === 'weight') {
+        if (this.previousWeight === this.weightValue) {
+          return
+        } else {
+          this.previousWeight = this.weightValue
+        }
       }
-      console.log(id)
+      // console.log(id)
       this.onCalc(id)
     },
     onCalc (changedValue) {
       let calcWeight = false
       let calcHeight = false
-      console.log(this.birthdateValue)
+      // console.log(this.birthdateValue)
+      // console.log(this.genderSelected)
       if (this.birthdateValue == null) {
         this.errorvars = 'Preencha a data de nascimento para efectuar o cálculo.'
         this.resultWeight = null
@@ -131,11 +140,13 @@ export default {
 
       let promises = []
       if (calcWeight) {
-        console.log('Calc weight')
+        this.resultWeight = null
+        // console.log('Calc weight')
         promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.weightValue))
       }
       if (calcHeight) {
-        console.log('Calc Height')
+        this.resultHeight = null
+        // console.log('Calc Height')
         promises.push(axios.get(process.env.API_BASE_URL + '/height/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.heightValue))
       }
       if (promises.length === 0) {
@@ -143,23 +154,11 @@ export default {
       }
       var self = this
       Promise.all(promises).then(function (results) {
-        /* let translatePercentiles = function (pname) {
-          let newname = pname.replace('P', '')
-          if (newname === '01') {
-            newname = '0.1'
-          } else if (newname === '999') {
-            newname = '99.9'
-          }
-          return newname
-        } */
         results.forEach(function (res) {
           if (res.config.url.includes('weight')) {
             self.resultWeight = res.data
             self.weightValues = []
-            // for (var k in self.resultWeight.percentilesforage) {
-            //   self.weightValues.push({percentil: translatePercentiles(k), weight: self.resultWeight.percentilesforage[k]})
-            // }
-            console.log(self.weightValues)
+            // console.log(self.weightValues)
           } else if (res.config.url.includes('height')) {
             self.resultHeight = res.data
           }
