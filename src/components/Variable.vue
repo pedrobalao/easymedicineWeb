@@ -48,4 +48,5 @@ export default {
 .variable {
   padding: 5px
 }
+
 </style>
