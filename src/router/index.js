@@ -98,7 +98,7 @@ let routes = [
   },
   {
     path: '*',
-    name: 'Error',
+    name: 'Error404',
     component: Error,
     props: { error: '404' }
     // meta: { requireAuth: true }

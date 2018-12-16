@@ -29,6 +29,8 @@
             <b-card-group columns class="resultgroup">
                 <app-result v-if="resultWeight != null" unit="" description="Percentil Peso" observation="" :value="resultWeight===null ? 'A Calcular...' : String(resultWeight.percentile)" />
                 <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight===null ? 'A Calcular...' : String(resultHeight.percentile)" />
+                <app-result v-if="bmi != null" unit="" description="IMC" observation="" :value="bmi===null ? 'A Calcular...' : String(bmi)" />
+                <app-result v-if="resultBMI != null" unit="" description="Percentil IMC" observation="" :value="resultBMI===null ? 'A Calcular...' : String(resultBMI)" />
             </b-card-group>
             <p class="text-muted" size="sm" >Dados WHO Child Growth Standards</p>
         </b-form>
@@ -40,6 +42,7 @@
 <script>
 import moment from 'moment'
 import axios from 'axios'
+import roundTo from 'round-to'
 
 export default {
   name: 'percentil',
@@ -50,6 +53,7 @@ export default {
       errorvars: '',
       previousBirthdate: null,
       birthdateValue: null,
+      bdatestr: null,
       weightValue: null,
       previosWeight: null,
       heightValue: null,
@@ -66,7 +70,8 @@ export default {
       },
       resultHeight: null,
       resultWeight: null,
-      weightValues: []
+      bmi: null,
+      resultBMI: null
     }
   },
   computed: {
@@ -110,9 +115,11 @@ export default {
         this.errorvars = 'Preencha a data de nascimento para efectuar o cálculo.'
         this.resultWeight = null
         this.resultHeight = null
+        this.resultBMI = null
+        this.bmi = null
         return
       }
-      let bdatestr = moment(this.birthdateValue).format('YYYY-MM-DD')
+      this.bdatestr = moment(this.birthdateValue).format('YYYY-MM-DD')
 
       if (changedValue === 'birthdate' || changedValue === 'gender') {
         if (this.weightValue != null && this.weightValue > 0) {
@@ -133,34 +140,51 @@ export default {
 
       if (this.weightValue == null || this.weightValue <= 0) {
         this.resultWeight = null
+        this.resultBMI = null
+        this.bmi = null
       }
       if (this.heightValue == null || this.heightValue <= 0) {
         this.resultHeight = null
+        this.resultBMI = null
+        this.bmi = null
       }
 
       let promises = []
       if (calcWeight) {
         this.resultWeight = null
         // console.log('Calc weight')
-        promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.weightValue))
+        promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + this.bdatestr + '/' + this.weightValue))
       }
       if (calcHeight) {
         this.resultHeight = null
         // console.log('Calc Height')
-        promises.push(axios.get(process.env.API_BASE_URL + '/height/percentile/' + this.genderSelected + '/' + bdatestr + '/' + this.heightValue))
+        promises.push(axios.get(process.env.API_BASE_URL + '/height/percentile/' + this.genderSelected + '/' + this.bdatestr + '/' + this.heightValue))
       }
+
+      if ((calcWeight && calcHeight) || (calcWeight && this.heightValue != null && this.heightValue > 0) || (calcHeight && this.weightValue != null && this.weightValue > 0)) {
+        promises.push(axios.get(process.env.API_BASE_URL + '/bmi/calculation?weight=' + this.weightValue + '&height=' + this.heightValue))
+      }
+
       if (promises.length === 0) {
         return
       }
       var self = this
       Promise.all(promises).then(function (results) {
         results.forEach(function (res) {
-          if (res.config.url.includes('weight')) {
+          if (res.config.url.includes('/weight/percentile/')) {
             self.resultWeight = res.data
-            self.weightValues = []
-            // console.log(self.weightValues)
-          } else if (res.config.url.includes('height')) {
+          } else if (res.config.url.includes('/height/percentile/')) {
             self.resultHeight = res.data
+          } else if (res.config.url.includes('/bmi/calculation')) {
+            self.bmi = roundTo(res.data, 2)
+            axios.get(process.env.API_BASE_URL + '/bmi/percentile/' + self.genderSelected + '/' + self.bdatestr + '/' + res.data)
+              .then(response => {
+                let result = response.data
+                self.resultBMI = result.percentile
+              })
+              .catch(e => {
+                alert('Erro ao calcular percentil do bmi')
+              })
           }
         })
       })
