@@ -30,7 +30,7 @@
                 <app-result v-if="resultWeight != null" unit="" description="Percentil Peso" observation="" :value="resultWeight===null ? 'A Calcular...' : String(resultWeight.percentile)" />
                 <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight===null ? 'A Calcular...' : String(resultHeight.percentile)" />
                 <app-result v-if="bmi != null" unit="" description="IMC" observation="" :value="bmi===null ? 'A Calcular...' : String(bmi)" />
-                <app-result v-if="resultBMI != null" unit="" description="Percentil IMC" observation="" :value="resultBMI===null ? 'A Calcular...' : String(resultBMI)" />
+                <app-result v-if="resultBMI != null" unit="" description="Percentil IMC" :observation="bmiConclusion" :value="resultBMI===null ? 'A Calcular...' : String(resultBMI)" :variant="bmiVariant"/>
             </b-card-group>
             <p class="text-muted" size="sm" >Dados WHO Child Growth Standards</p>
         </b-form>
@@ -43,6 +43,7 @@
 import moment from 'moment'
 import axios from 'axios'
 import roundTo from 'round-to'
+import bmiUtils from '../utilities/bmiUtils'
 
 export default {
   name: 'percentil',
@@ -71,7 +72,9 @@ export default {
       resultHeight: null,
       resultWeight: null,
       bmi: null,
-      resultBMI: null
+      resultBMI: null,
+      bmiConclusion: null,
+      bmiVariant: null
     }
   },
   computed: {
@@ -117,6 +120,7 @@ export default {
         this.resultHeight = null
         this.resultBMI = null
         this.bmi = null
+        this.bmiVariant = null
         return
       }
       this.bdatestr = moment(this.birthdateValue).format('YYYY-MM-DD')
@@ -142,11 +146,15 @@ export default {
         this.resultWeight = null
         this.resultBMI = null
         this.bmi = null
+        this.bmiConclusion = null
+        this.bmiVariant = null
       }
       if (this.heightValue == null || this.heightValue <= 0) {
         this.resultHeight = null
         this.resultBMI = null
         this.bmi = null
+        this.bmiConclusion = null
+        this.bmiVariant = null
       }
 
       let promises = []
@@ -181,9 +189,11 @@ export default {
               .then(response => {
                 let result = response.data
                 self.resultBMI = result.percentile
+                self.bmiConclusion = bmiUtils.translateToPT(result.conclusion)
+                self.bmiVariant = bmiUtils.translateToVariant(result.conclusion)
               })
               .catch(e => {
-                alert('Erro ao calcular percentil do bmi')
+                alert('Erro ao calcular percentil do bmi - ' + e)
               })
           }
         })
