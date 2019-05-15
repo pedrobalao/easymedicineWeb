@@ -25,7 +25,7 @@
                     </b-input-group>
                 </div>
             </b-form-group>
-            <p class="text-danger" size="sm" v-if="errorvars">{{errorvars}}</p>
+            <p class="text-danger" size="sm" v-if="errorvars!=''">{{errorvars}}</p>
             <b-card-group columns class="resultgroup">
                 <app-result v-if="resultWeight != null" unit="" description="Percentil Peso" observation="" :value="resultWeight===null ? 'A Calcular...' : String(resultWeight.percentile)" />
                 <app-result v-if="resultHeight != null" unit="" description="Percentil Altura" observation="" :value="resultHeight===null ? 'A Calcular...' : String(resultHeight.percentile)" />
@@ -33,6 +33,7 @@
                 <app-result v-if="resultBMI != null" unit="" description="Percentil IMC" :observation="bmiConclusion" :value="resultBMI===null ? 'A Calcular...' : String(resultBMI)" :variant="bmiVariant"/>
             </b-card-group>
             <p class="text-muted" size="sm" >Dados WHO Child Growth Standards</p>
+            <p class="text-muted" size="sm" >WHO Child Growth Standards não disponibiliza percentis de peso para idades superiores a 10 anos.</p>
         </b-form>
         
        
@@ -49,7 +50,7 @@ export default {
   name: 'percentil',
   data () {
     // console.log('data')
-    let minDate = moment().subtract(1855, 'days').toDate()
+    let minDate = moment().subtract(18, 'years').toDate()
     return {
       errorvars: '',
       previousBirthdate: null,
@@ -161,7 +162,11 @@ export default {
       if (calcWeight) {
         this.resultWeight = null
         // console.log('Calc weight')
-        promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + this.bdatestr + '/' + this.weightValue))
+        let todaysDate = moment(new Date())
+        let age = todaysDate.diff(this.birthdateValue, 'years')
+        if (age < 10) {
+          promises.push(axios.get(process.env.API_BASE_URL + '/weight/percentile/' + this.genderSelected + '/' + this.bdatestr + '/' + this.weightValue))
+        }
       }
       if (calcHeight) {
         this.resultHeight = null
