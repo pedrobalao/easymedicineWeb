@@ -14,7 +14,7 @@
           </b-form>
         </div>
         <div class="result" >
-          <app-result v-if="resultvalue" :value="resultvalue +' '+resultunit" :observation="medicalcalculation.Observation" />
+          <app-result v-if="resultvalue" :value="resultvalue +' '+ (resultunit == 'NA' ? '' : resultunit)" :observation="medicalcalculation.Observation" />
         </div>
     </div>
 </template>
