@@ -42,17 +42,10 @@
           <div class="col-md-3 mb-md-0 mb-3">
 
             <!-- Links -->
-            <h5 class="text-uppercase">Social</h5>
+            <h5 class="text-uppercase"><a href="http://facebook.com/easyped/">Facebook</a></h5>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Feasyped&width=147&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="147" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
-            <ul class="list-unstyled">
-              <li>
-                <a href="http://facebook.com/easyped/">Facebook</a>
-              </li>
-              <li>
-                <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Feasyped&width=147&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="147" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-              </li>
-            </ul>
-
+            
           </div>
           <!-- Grid column -->
 

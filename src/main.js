@@ -20,13 +20,13 @@ import fontawesome from '@fortawesome/fontawesome'
 import { faEdit } from '@fortawesome/fontawesome-free-solid'
 import VueAnalytics from 'vue-analytics'
 import CookieLaw from 'vue-cookie-law'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
 import HelloCarousel from './components/HelloCarousel'
 import EasyFooter from './components/EasyFooter'
-import 'vue-awesome/icons/flag'
-import 'vue-awesome/icons'
-import Icon from 'vue-awesome/components/Icon'
+// import 'vue-awesome/icons/flag'
+// import 'vue-awesome/icons'
+// import Icon from 'vue-awesome/components/Icon'
 import Loading from 'vue-full-loading'
 import Datepicker from 'vuejs-datepicker'
 import { Laue } from 'laue'
@@ -56,14 +56,14 @@ Vue.component('app-result', Result)
 Vue.component('druglist', DrugList)
 Vue.component('hello-carousel', HelloCarousel)
 Vue.component('cookie-law', CookieLaw)
-Vue.component('swiper', VueAwesomeSwiper)
+// Vue.component('swiper', VueAwesomeSwiper)
 Vue.component('easy-footer', EasyFooter)
-Vue.component('icon', Icon)
+// Vue.component('icon', Icon)
 Vue.component('loading', Loading)
 Vue.component('vuejs-datepicker', Datepicker)
 
 Vue.use(Laue)
-Vue.use(VueAwesomeSwiper)
+// Vue.use(VueAwesomeSwiper)
 
 global.api = require('@/api/api')
 global.http = require('@/api/http')

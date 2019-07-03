@@ -11,7 +11,7 @@
     <footer class="blockquote-footer">Dra. Paula Matos</footer>
   </blockquote>
   
-  <div>
+  <!-- <div>
     <b-card-group deck class="cardgroup">
         <b-card border-variant="light">
           <div class="row h-100 justify-content-center align-items-center">
@@ -38,7 +38,7 @@
           </div>
         </b-card>
     </b-card-group>
-  </div>
+  </div> -->
   <div>
    <b-card-group columns class="mb-3" >
         <b-card :title="author.name"  v-for="author in authors" :key="author.name">
