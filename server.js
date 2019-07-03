@@ -1,9 +1,11 @@
 //Server.js, don't forget to add express & ejs to packages
 const express = require('express')
+const compression = require('compression')
 
 const app = express()
 const port = process.env.PORT || 3003
 const router = express.Router()
+
 
 app.use(express.static(`${__dirname}/dist`)) // set the static files location for the static html
 
@@ -20,6 +22,6 @@ router.get('/*', (req, res, next) => {
 })
 
 app.use('/', router)
-
+app.use(compression())
 app.listen(port)
 console.log('App running on port', port)
