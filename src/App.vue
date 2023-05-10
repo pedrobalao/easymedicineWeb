@@ -13,6 +13,8 @@
           <b-nav-item to="/surgeryreferral" >Referenciação Cirúrgica</b-nav-item>
           <b-nav-item to="/percentiles" ><!--<b-badge variant="danger">beta</b-badge>-->Percentis</b-nav-item>
           <b-nav-item to="/about">Sobre</b-nav-item>
+          <b-nav-item href="http://privacy.easyped.eu">Privacidade</b-nav-item>
+          
           <!--<b-nav-item to="/Favourites" v-show="isLogged">Favoritos</b-nav-item>-->
           <!--<b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
           <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>-->
